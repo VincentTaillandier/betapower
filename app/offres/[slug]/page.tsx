@@ -11,7 +11,7 @@ export default async function OfrePage({
   params: Promise<{ slug: string }>
 }) {
   const { slug } = await params
-  const { frontmatter, content } = getBySlug('offres', slug)
+  const { frontmatter, content } = getBySlug('offres', decodeURIComponent(slug))
   const contentHtml = await markdownToHtml(content)
 
   return (

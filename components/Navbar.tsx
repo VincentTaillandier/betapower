@@ -2,9 +2,8 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
-import { motion } from 'framer-motion'
 
 const links = [
   { href: '/',         label: 'Accueil' },
@@ -15,15 +14,35 @@ const links = [
 ]
 
 export default function Navbar() {
-  const [open, setOpen] = useState(false)
-  const pathname = usePathname()
+  const [open, setOpen]       = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+  const pathname              = usePathname()
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24)
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  const navBg      = scrolled ? 'bg-betapower-darkblue shadow-lg' : 'bg-white shadow-sm'
+  const borderLine = scrolled ? 'border-white/10' : 'border-gray-200'
+  const brandColor = scrolled ? 'text-white' : 'text-betapower-darkblue'
+  const linkRest   = scrolled ? 'text-white/80' : 'text-gray-600'
+
+  const linkClass = (href: string) => {
+    const isActive = pathname === href
+    const base = `text-sm font-medium transition-all duration-200 relative group`
+    if (isActive) return `${base} ${scrolled ? 'text-betapower-azure' : 'text-betapower-azure'} underline underline-offset-4 decoration-betapower-azure`
+    return `${base} ${linkRest} hover:text-betapower-azure hover:underline hover:underline-offset-4 hover:decoration-betapower-azure`
+  }
 
   return (
-    <nav className="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
+    <nav className={`sticky top-0 z-50 border-b transition-all duration-300 ${navBg} ${borderLine}`}>
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
 
-          <Link href="/" className="flex items-center gap-2">
+          {/* Logo */}
+          <Link href="/" className="flex items-center gap-2 shrink-0">
             <Image
               src="/images/betapower_logo.png"
               alt="BetaPower"
@@ -31,33 +50,29 @@ export default function Navbar() {
               height={40}
               className="h-9 w-auto"
             />
-            <span className="text-xl font-bold text-betapower-darkblue">BetaPower</span>
+            <span className={`text-xl font-bold transition-colors duration-300 ${brandColor}`} style={{ fontFamily: 'var(--font-inter, sans-serif)' }}>
+              BetaPower
+            </span>
           </Link>
 
-          <motion.div
-            className="hidden md:flex items-center gap-7"
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, staggerChildren: 0.1, delay: 0.2 }}
-          >
+          {/* Desktop links */}
+          <div className="hidden md:flex items-center gap-6">
             {links.map(({ href, label }) => (
-              <motion.div key={href} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
-                <Link
-                  href={href}
-                  className={`text-sm font-medium transition-colors ${
-                    pathname === href
-                      ? 'text-betapower-darkblue'
-                      : 'text-gray-600 hover:text-betapower-darkblue'
-                  }`}
-                >
-                  {label}
-                </Link>
-              </motion.div>
+              <Link key={href} href={href} className={linkClass(href)}>
+                {label}
+              </Link>
             ))}
-          </motion.div>
+            <Link
+              href="/contact"
+              className="ml-2 bg-betapower-gold text-white text-sm font-semibold px-4 py-2 rounded hover:bg-amber-700 transition-colors duration-200 whitespace-nowrap"
+            >
+              Prendre contact
+            </Link>
+          </div>
 
+          {/* Mobile burger */}
           <button
-            className="md:hidden p-2 rounded-lg text-gray-600 hover:bg-gray-100"
+            className={`md:hidden p-2 rounded-lg transition-colors ${scrolled ? 'text-white hover:bg-white/10' : 'text-gray-600 hover:bg-gray-100'}`}
             onClick={() => setOpen(!open)}
             aria-label="Menu"
           >
@@ -69,28 +84,36 @@ export default function Navbar() {
             </svg>
           </button>
         </div>
-
-        {open && (
-          <motion.div
-            className="md:hidden pb-4 space-y-1 border-t border-gray-100 pt-2"
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-          >
-            {links.map(({ href, label }) => (
-              <Link
-                key={href}
-                href={href}
-                className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-betapower-darkblue rounded-lg font-medium"
-                onClick={() => setOpen(false)}
-              >
-                {label}
-              </Link>
-            ))}
-          </motion.div>
-        )}
       </div>
+
+      {/* Mobile menu — always dark */}
+      {open && (
+        <div className="md:hidden bg-betapower-darkblue border-t border-white/10 px-4 pb-5 pt-3 space-y-1">
+          {links.map(({ href, label }) => (
+            <Link
+              key={href}
+              href={href}
+              className={`block px-4 py-2.5 rounded-lg font-medium text-sm transition-colors ${
+                pathname === href
+                  ? 'text-betapower-azure bg-white/5'
+                  : 'text-white/80 hover:text-betapower-azure hover:bg-white/5'
+              }`}
+              onClick={() => setOpen(false)}
+            >
+              {label}
+            </Link>
+          ))}
+          <div className="pt-2 px-4">
+            <Link
+              href="/contact"
+              className="block text-center bg-betapower-gold text-white text-sm font-semibold px-4 py-2.5 rounded hover:bg-amber-700 transition-colors"
+              onClick={() => setOpen(false)}
+            >
+              Prendre contact
+            </Link>
+          </div>
+        </div>
+      )}
     </nav>
   )
 }

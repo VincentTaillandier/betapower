@@ -1,21 +1,81 @@
 @import "tailwindcss";
 
 @theme {
-  /* BetaPower brand colors — use as bg-betapower-darkblue, text-betapower-azure, etc. */
   --color-betapower-darkblue: #1c2d4b;
   --color-betapower-azure:    #407489;
+  --color-betapower-gold:     #D97706;
+  --color-betapower-bg:       #FAFAFA;
+  --color-betapower-text:     #374151;
 }
 
 :root {
-  --background: #f9fafb;
-  --foreground: #111827;
-  --betapower-primary: #1c2d4b;
-  --betapower-accent:  #407489;
+  --betapower-primary:  #1c2d4b;
+  --betapower-accent:   #407489;
+  --betapower-gold:     #D97706;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: #FAFAFA;
+  color: #374151;
+}
+
+/* Playfair Display on all semantic headings */
+h1, h2, h3, h4 {
+  font-family: var(--font-playfair), 'Playfair Display', Georgia, serif;
+}
+
+/* Default heading sizes (overridable by Tailwind utilities) */
+h1 { font-size: 3.5rem; line-height: 1.15; font-weight: 700; }
+h2 { font-size: 2.25rem; line-height: 1.25; font-weight: 600; }
+h3 { font-size: 1.5rem;  line-height: 1.3;  font-weight: 600; }
+
+@layer components {
+  .btn-primary {
+    background-color: #D97706;
+    color: #FFFFFF;
+    border-radius: 4px;
+    padding: 12px 28px;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    display: inline-block;
+    transition: background-color 200ms;
+    text-decoration: none;
+    font-family: var(--font-inter, sans-serif);
+  }
+  .btn-primary:hover { background-color: #B45309; }
+
+  .btn-secondary {
+    border: 1.5px solid #407489;
+    color: #407489;
+    background: transparent;
+    border-radius: 4px;
+    padding: 12px 28px;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    display: inline-block;
+    transition: all 200ms;
+    text-decoration: none;
+    font-family: var(--font-inter, sans-serif);
+  }
+  .btn-secondary:hover { background-color: #407489; color: #FFFFFF; }
+
+  .section-padding {
+    padding-top: 96px;
+    padding-bottom: 96px;
+    padding-left: 64px;
+    padding-right: 64px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .card {
+    background: #FFFFFF;
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+    padding: 32px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  }
 }
 
 /* Markdown rendered content */

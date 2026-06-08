@@ -11,7 +11,7 @@ export default async function ProjetPage({
   params: Promise<{ slug: string }>
 }) {
   const { slug } = await params
-  const { frontmatter, content } = getBySlug('projects', slug)
+  const { frontmatter, content } = getBySlug('projects', decodeURIComponent(slug))
   const contentHtml = await markdownToHtml(content)
 
   return (
