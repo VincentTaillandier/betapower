@@ -1,26 +1,31 @@
 @import "tailwindcss";
 
+@theme {
+  /* BetaPower brand colors — use as bg-betapower-darkblue, text-betapower-azure, etc. */
+  --color-betapower-darkblue: #1c2d4b;
+  --color-betapower-azure:    #407489;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: #f9fafb;
+  --foreground: #111827;
+  --betapower-primary: #1c2d4b;
+  --betapower-accent:  #407489;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Markdown rendered content */
+.prose h1 { font-size: 1.875rem; font-weight: 700; color: #111827; margin-bottom: 1rem; }
+.prose h2 { font-size: 1.5rem;   font-weight: 600; color: #1f2937; margin-bottom: 0.75rem; margin-top: 2rem; }
+.prose h3 { font-size: 1.25rem;  font-weight: 600; color: #374151; margin-bottom: 0.5rem;  margin-top: 1.5rem; }
+.prose p  { color: #4b5563; line-height: 1.75; margin-bottom: 1rem; }
+.prose ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1rem; color: #4b5563; }
+.prose ol { list-style-type: decimal; padding-left: 1.5rem; margin-bottom: 1rem; color: #4b5563; }
+.prose li { margin-bottom: 0.25rem; }
+.prose strong { font-weight: 600; color: #1f2937; }
+.prose a  { color: #407489; text-decoration: underline; }
+.prose blockquote { border-left: 4px solid #407489; padding-left: 1rem; font-style: italic; color: #6b7280; margin: 1rem 0; }
