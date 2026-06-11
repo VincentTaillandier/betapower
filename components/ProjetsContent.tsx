@@ -2,86 +2,59 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import { useEffect, useRef, useState } from 'react'
+import { Projet } from '@/types/project'
 
-const fadeUp = { hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }
-const containerVariants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.12, delayChildren: 0.1 } },
+type ProjetsContentProps = {
+  projects: Projet[]
 }
 
-interface Projet {
-  slug: string
-  title: string
-  description?: string
-  date?: string
-  client?: string
-  skills?: string[]
-}
+function ProjectCard({ project, index }: { project: Projet; index: number }) {
+  const ref = useRef<HTMLDivElement>(null)
+  const [visible, setVisible] = useState(false)
 
-const milestones = [
-  { date: 'Juin 2025',  label: 'Création de BetaPower' },
-  { date: '2025',       label: 'Première mission RTE international' },
-  { date: '2026',       label: 'Prochain jalon à venir' },
-]
-
-function ProjectCard({ projet }: { projet: Projet }) {
-  const skills = Array.isArray(projet.skills) ? projet.skills : []
-  const hasPage = !!projet.slug
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) setVisible(true) },
+      { threshold: 0.15 }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
 
   return (
-    <div className="card group hover:shadow-md transition-all duration-200">
-      {/* Year badge */}
-      {projet.date && (
-        <span
-          className="inline-block text-xs font-bold uppercase tracking-wider mb-4 px-3 py-1 rounded-full"
-          style={{ background: 'rgba(217,119,6,0.12)', color: '#D97706' }}
-        >
-          {projet.date}
-        </span>
-      )}
-
-      {/* Client tag */}
-      {projet.client && (
-        <p className="text-sm font-medium mb-3" style={{ color: '#407489' }}>
-          {projet.client}
+    <div
+      ref={ref}
+      style={{ transitionDelay: `${index * 150}ms` }}
+      className={`w-72 rounded-2xl flex flex-col items-center justify-start p-5 bg-white border border-gray-100 shadow-md hover:shadow-xl transition-all duration-700 ease-out group
+        ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}
+      `}
+    >
+      <span className="text-xs font-bold uppercase tracking-wider mb-3 px-3 py-1 rounded-full bg-betapower-gold/10 text-betapower-gold">
+        {project.date}
+      </span>
+      <h3 className="text-sm font-bold text-gray-900 mb-1 text-center line-clamp-2 leading-snug">
+        {project.title}
+      </h3>
+      <p className="text-xs text-gray-400 mb-2 text-center">{project.client}</p>
+      {project.contexteSummary && (
+        <p className="text-xs text-gray-600 text-center leading-relaxed mb-3 px-1">
+          {project.contexteSummary}
         </p>
       )}
-
-      <h3 className="text-gray-900 mb-4" style={{ fontSize: '1.15rem', fontWeight: 600 }}>
-        {projet.title}
-      </h3>
-
-      {projet.description && (
-        <p className="text-gray-500 text-sm leading-relaxed mb-5">{projet.description}</p>
-      )}
-
-      {/* Skills */}
-      {skills.length > 0 && (
-        <div className="flex flex-wrap gap-2 mb-5">
-          {skills.map((s) => (
-            <span
-              key={s}
-              className="text-xs px-2.5 py-1 rounded-full border border-gray-200 text-gray-500"
-            >
-              {s}
-            </span>
-          ))}
-        </div>
-      )}
-
-      {hasPage && (
-        <Link
-          href={`/projets/${projet.slug}`}
-          className="text-sm font-medium text-betapower-azure group-hover:underline"
-        >
-          En savoir plus →
-        </Link>
-      )}
+      <Link
+        href={`/projets/${project.slug}`}
+        className="mt-auto text-xs text-betapower-azure font-semibold hover:text-betapower-gold transition-colors group-hover:underline"
+      >
+        En savoir plus →
+      </Link>
     </div>
   )
 }
 
-export default function ProjetsContent({ projets }: { projets: Projet[] }) {
+export default function ProjetsContent({ projects }: ProjetsContentProps) {
   return (
     <>
       {/* ── HERO ─────────────────────────────────────────────── */}
@@ -102,112 +75,63 @@ export default function ProjetsContent({ projets }: { projets: Projet[] }) {
 
       {/* ── TIMELINE ─────────────────────────────────────────── */}
       <section className="bg-white py-24 px-6">
-        <div className="max-w-5xl mx-auto">
+        <div className="relative max-w-4xl mx-auto">
 
-          {/* Mobile: simple stack */}
-          <div className="lg:hidden space-y-8">
-            {projets.map((projet) => (
-              <motion.div
-                key={projet.slug}
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.85, ease: 'easeOut' }}
-              >
-                <ProjectCard projet={projet} />
-              </motion.div>
-            ))}
-          </div>
+          {/* Ligne desktop */}
+          <div
+            className="absolute hidden md:block top-0 bottom-0 left-1/2 -translate-x-1/2 pointer-events-none"
+            style={{
+              width: '2px',
+              background: 'linear-gradient(to bottom, transparent 0%, #C8962E 8%, #C8962E 92%, transparent 100%)',
+              boxShadow: '0 0 2px 1px rgba(200, 150, 46, 0.2)',
+            }}
+            aria-hidden="true"
+          />
 
-          {/* Desktop: alternating timeline */}
-          <div className="hidden lg:block relative">
-            {/* Vertical line */}
-            <div
-              className="absolute top-0 bottom-0 w-px"
-              style={{ left: '50%', transform: 'translateX(-50%)', background: 'rgba(64,116,137,0.25)' }}
-            />
+          {/* Ligne mobile : CSS gradient (position fixe à gauche) */}
+          <div
+            className="absolute md:hidden top-0 bottom-0 pointer-events-none"
+            style={{
+              left: '23px',
+              width: '2px',
+              background: 'linear-gradient(to bottom, transparent 0%, #C8962E 8%, #C8962E 92%, transparent 100%)',
+              boxShadow: '0 0 6px 2px rgba(200, 150, 46, 0.4)',
+            }}
+            aria-hidden="true"
+          />
 
-            <motion.div variants={containerVariants} initial="hidden" animate="visible">
-              {projets.map((projet, i) => {
-                const isLeft = i % 2 === 0
-                return (
-                  <motion.div
-                    key={projet.slug}
-                    className="relative grid grid-cols-2 gap-0 mb-16"
-                    variants={fadeUp}
-                    transition={{ duration: 0.85, ease: 'easeOut' }}
-                  >
-                    {/* Dot on central line */}
-                    <div
-                      className="absolute w-4 h-4 rounded-full border-4 border-white z-10"
-                      style={{
-                        background: '#D97706',
-                        left: '50%',
-                        top: '2rem',
-                        transform: 'translateX(-50%)',
-                      }}
-                    />
+          {projects.map((project, index) => {
+            const isLeft = index % 2 === 0
+            return (
+              <div key={project.slug} className="relative mb-20">
 
-                    {/* Left slot */}
-                    <div className="pr-12">
-                      {isLeft && <ProjectCard projet={projet} />}
-                    </div>
+                {/* Desktop : alternance gauche / droite */}
+                <div className="hidden md:flex w-full items-center">
+                  <div className="w-1/2 flex justify-end pr-12">
+                    {isLeft && <ProjectCard project={project} index={index} />}
+                  </div>
 
-                    {/* Right slot */}
-                    <div className="pl-12">
-                      {!isLeft && <ProjectCard projet={projet} />}
-                    </div>
-                  </motion.div>
-                )
-              })}
-            </motion.div>
-          </div>
-        </div>
-      </section>
+                  {/* Marqueur central */}
+                  <div className="absolute left-1/2 -translate-x-1/2 flex items-center justify-center z-10">
+                    <div className="w-3 h-3 rounded-full bg-betapower-gold ring-4 ring-betapower-gold/20" />
+                  </div>
 
-      {/* ── JALONS ───────────────────────────────────────────── */}
-      <section className="bg-betapower-bg py-24 px-6">
-        <div className="max-w-5xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.85, ease: 'easeOut' }}
-            className="mb-14"
-          >
-            <h2 className="text-gray-900 mb-3">Jalons BetaPower</h2>
-            <p className="text-gray-500 text-sm" style={{ fontFamily: 'var(--font-inter, sans-serif)' }}>
-              Construction en public — voici comment BetaPower grandit.
-            </p>
-          </motion.div>
+                  <div className="w-1/2 flex justify-start pl-12">
+                    {!isLeft && <ProjectCard project={project} index={index} />}
+                  </div>
+                </div>
 
-          {/* Horizontal timeline */}
-          <div className="relative">
-            {/* Connecting line */}
-            <div className="hidden sm:block absolute top-5 left-0 right-0 h-px bg-betapower-azure/25" />
+                {/* Mobile : empilé, ligne à gauche */}
+                <div className="flex md:hidden items-center pl-16">
+                  <div className="absolute left-6 -translate-x-1/2 flex items-center justify-center z-10">
+                    <div className="w-3 h-3 rounded-full bg-betapower-gold ring-4 ring-betapower-gold/20" />
+                  </div>
+                  <ProjectCard project={project} index={index} />
+                </div>
 
-            <motion.div
-              className="grid grid-cols-1 sm:grid-cols-3 gap-10"
-              variants={containerVariants}
-              initial="hidden"
-              animate="visible"
-            >
-              {milestones.map(({ date, label }) => (
-                <motion.div
-                  key={date}
-                  className="relative flex flex-col items-start sm:items-center sm:text-center"
-                  variants={fadeUp}
-                  transition={{ duration: 0.85, ease: 'easeOut' }}
-                >
-                  {/* Dot */}
-                  <div
-                    className="w-3 h-3 rounded-full mb-4 shrink-0"
-                    style={{ background: '#407489' }}
-                  />
-                  <p className="text-xs font-bold text-betapower-gold uppercase tracking-wider mb-1">{date}</p>
-                  <p className="text-gray-600 text-sm">{label}</p>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
+              </div>
+            )
+          })}
         </div>
       </section>
 

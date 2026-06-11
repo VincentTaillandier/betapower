@@ -1,8 +1,6 @@
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
-import { remark } from 'remark'
-import html from 'remark-html'
 
 const contentDir = path.join(process.cwd(), 'content')
 
@@ -33,16 +31,4 @@ export function getBySlug(
   return { frontmatter: data as Frontmatter, content }
 }
 
-export async function markdownToHtml(markdown: string): Promise<string> {
-  const result = await remark().use(html).process(markdown)
-  return result.toString()
-}
 
-export function getAllItems(
-  subDir: string
-): Array<{ slug: string } & Frontmatter> {
-  return getSlugs(subDir).map((slug) => {
-    const { frontmatter } = getBySlug(subDir, slug)
-    return { slug, ...frontmatter }
-  })
-}

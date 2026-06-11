@@ -1,0 +1,21 @@
+# Security headers for Netlify
+# These headers will be applied to all routes
+
+/*
+  # Prevent MIME type sniffing
+  X-Content-Type-Options: nosniff
+  
+  # Control referrer information
+  Referrer-Policy: strict-origin-when-cross-origin
+  
+  # Prevent clickjacking
+  X-Frame-Options: SAMEORIGIN
+  
+  # Content Security Policy - adjust as needed for your site
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self'; frame-ancestors 'self'
+  
+  # Permissions Policy - disable sensitive features
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=()
+  
+  # Enable XSS protection (legacy but good for older browsers)
+  X-XSS-Protection: 1; mode=block

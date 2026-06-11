@@ -1,13 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-
-const navLinks = [
-  { href: '/',         label: 'Accueil' },
-  { href: '/offres',   label: 'Offres' },
-  { href: '/a-propos', label: 'À propos' },
-  { href: '/projets',  label: 'Projets' },
-  { href: '/contact',  label: 'Contact' },
-]
+import { navLinks } from '@/lib/nav'
 
 export default function Footer() {
   return (
@@ -65,7 +58,7 @@ export default function Footer() {
                 contact@betapower.fr
               </a>
               <a
-                href="https://www.linkedin.com/company/betapower"
+                href="https://www.linkedin.com/company/betapower/?viewAsMember=true"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block text-white/65 hover:text-betapower-azure text-sm transition-colors duration-200"
@@ -73,7 +66,7 @@ export default function Footer() {
                 LinkedIn — BetaPower →
               </a>
               <a
-                href="https://www.linkedin.com/in/vincent-taillandier"
+                href="https://www.linkedin.com/in/vincent-taillandier-15574a150/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block text-white/65 hover:text-betapower-azure text-sm transition-colors duration-200"

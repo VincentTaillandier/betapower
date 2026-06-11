@@ -1,31 +1,71 @@
-import { getBySlug, getSlugs, markdownToHtml } from '@/lib/markdown'
-import Link from 'next/link'
+import type { Metadata } from 'next'
+import { notFound } from 'next/navigation'
+import { offresData, Offre, Pillar } from '@/lib/offres'
+import OffreDetailClient from './OffreDetailClient'
 
-export async function generateStaticParams() {
-  return getSlugs('offres').map((slug) => ({ slug }))
+interface OffreDetailPageProps {
+  params: Promise<{ slug: string }>
 }
 
-export default async function OfrePage({
-  params,
-}: {
-  params: Promise<{ slug: string }>
-}) {
+export async function generateMetadata({ params }: OffreDetailPageProps): Promise<Metadata> {
   const { slug } = await params
-  const { frontmatter, content } = getBySlug('offres', decodeURIComponent(slug))
-  const contentHtml = await markdownToHtml(content)
+  
+  // Find the offer across all pillars
+  let offreFound: Offre | null = null
+  
+  for (const pillar of Object.values(offresData) as Pillar[]) {
+    const offre = pillar.offres.find((o) => o.id === slug)
+    if (offre) {
+      offreFound = offre
+      break
+    }
+  }
+  
+  if (!offreFound || !offreFound.versionDetaillee) {
+    return {
+      title: 'Offre non trouvée',
+      description: 'Cette offre n\'existe pas.',
+    }
+  }
+  
+  return {
+    title: offreFound.versionDetaillee.titre,
+    description: offreFound.versionDetaillee.sousTitre,
+  }
+}
 
-  return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 py-16">
-      <Link href="/offres" className="text-betapower-azure hover:underline text-sm mb-8 inline-block">
-        ← Retour aux offres
-      </Link>
-      <h1 className="text-4xl font-bold text-gray-900 mb-4">{frontmatter.title}</h1>
-      {frontmatter.description && (
-        <p className="text-xl text-gray-500 mb-10 border-l-4 border-betapower-azure pl-4">
-          {frontmatter.description}
-        </p>
-      )}
-      <article className="prose" dangerouslySetInnerHTML={{ __html: contentHtml }} />
-    </div>
-  )
+export function generateStaticParams() {
+  const params: { slug: string }[] = []
+  
+  // Collect all offer slugs from all pillars
+  Object.values(offresData).forEach((pillar: Pillar) => {
+    pillar.offres.forEach((offre: Offre) => {
+      params.push({ slug: offre.id })
+    })
+  })
+  
+  return params
+}
+
+export default async function OffreDetailPage({ params }: OffreDetailPageProps) {
+  const { slug } = await params
+  
+  // Find the offer across all pillars
+  let offreFound: Offre | null = null
+  let pillarName = ''
+  
+  for (const pillar of Object.values(offresData) as Pillar[]) {
+    const offre = pillar.offres.find((o) => o.id === slug)
+    if (offre) {
+      offreFound = offre
+      pillarName = pillar.pillarTitle
+      break
+    }
+  }
+  
+  if (!offreFound || !offreFound.versionDetaillee) {
+    notFound()
+  }
+  
+  return <OffreDetailClient offre={offreFound} pillarName={pillarName} />
 }

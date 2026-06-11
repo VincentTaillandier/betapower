@@ -2,13 +2,11 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { PiBookOpenLight, PiEngine, PiLightbulb, PiShootingStar } from 'react-icons/pi'
-
-const icons = [PiEngine, PiLightbulb, PiShootingStar, PiBookOpenLight]
+import { proofPoints, pillars } from '@/lib/home'
 
 const heroVariants = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.15, delayChildren: 0.2 } },
+  visible: { transition: { staggerChildren: 0.1, delayChildren: 0.1 } },
 }
 const heroItem = {
   hidden: { opacity: 0, y: 14 },
@@ -23,19 +21,7 @@ const cardVariants = {
   visible: { opacity: 1, y: 0 },
 }
 
-const stats = [
-  { value: '7 ans',    label: "d'expérience" },
-  { value: '2 projets', label: 'RTE international' },
-  { value: 'HTB / HTA', label: 'réseaux maîtrisés' },
-]
-
-interface Offre {
-  slug: string
-  title: string
-  description?: string
-}
-
-export default function HomeContent({ offres }: { offres: Offre[] }) {
+export default function HomeContent() {
   return (
     <>
       {/* ── HERO ──────────────────────────────────────────────── */}
@@ -43,12 +29,8 @@ export default function HomeContent({ offres }: { offres: Offre[] }) {
         className="relative flex flex-col"
         style={{ minHeight: 'calc(100vh - 64px)' }}
       >
-        {/* Background photo + overlay */}
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: 'url(/images/hero-substation.jpg)' }}
-        />
-        <div className="absolute inset-0 bg-betapower-darkblue" style={{ opacity: 0.7 }} />
+        {/* Solid background instead of missing image */}
+        <div className="absolute inset-0 bg-gradient-to-br from-betapower-darkblue to-betapower-darkblue/90" />
 
         {/* Hero content */}
         <div className="relative z-10 flex-1 flex items-center">
@@ -56,45 +38,44 @@ export default function HomeContent({ offres }: { offres: Offre[] }) {
             <motion.div variants={heroVariants} initial="hidden" animate="visible">
 
               <motion.p
-                className="text-white/60 text-xs font-semibold tracking-[0.2em] mb-6 uppercase"
+                className="text-white/70 text-base font-medium mb-6"
                 variants={heroItem}
-                transition={{ duration: 0.85, ease: 'easeOut' }}
+                transition={{ duration: 0.6, ease: 'easeOut' }}
               >
-                Conseil &amp; Expertise en Énergie
+                L'expertise de l'exploitation du réseau électrique au service des acteurs du secteur
               </motion.p>
 
               <motion.h1
                 className="text-white max-w-3xl mb-7"
                 style={{ fontSize: 'clamp(2.25rem, 4.5vw, 3.75rem)', lineHeight: 1.12 }}
                 variants={heroItem}
-                transition={{ duration: 0.85, ease: 'easeOut' }}
+                transition={{ duration: 0.5, ease: 'easeOut' }}
               >
-                Relever les défis du système électrique de demain avec les acteurs du secteur.
+                Expertise en exploitation des réseaux électriques
               </motion.h1>
 
               <motion.p
-                className="text-white/70 max-w-xl mb-10"
+                className="text-white/70 max-w-2xl mb-10"
                 style={{ fontSize: '1.125rem', lineHeight: 1.75 }}
                 variants={heroItem}
-                transition={{ duration: 0.85, ease: 'easeOut' }}
+                transition={{ duration: 0.5, ease: 'easeOut' }}
               >
-                BetaPower accompagne opérateurs et industriels dans leurs projets de réseau,
-                audits d&apos;infrastructure et stratégie énergie.
+                Études de réseau, formation des opérateurs, simulateurs de conduite, codes de réseau ENTSO-E, automatisation CGMES : BetaPower apporte aux acteurs du système électrique une expertise forgée en salle de conduite et éprouvée dans plus de dix pays.
               </motion.p>
 
               <motion.div
                 className="flex flex-wrap gap-4 items-center"
                 variants={heroItem}
-                transition={{ duration: 0.85, ease: 'easeOut' }}
+                transition={{ duration: 0.5, ease: 'easeOut' }}
               >
                 <Link href="/contact" className="btn-primary">
-                  Discutons de votre projet
+                  Contactez-nous pour un premier échange
                 </Link>
                 <Link
-                  href="/projets"
+                  href="/offres"
                   className="text-white text-sm font-medium underline underline-offset-4 hover:text-white/70 transition-colors"
                 >
-                  Voir nos réalisations →
+                  Découvrir les offres →
                 </Link>
               </motion.div>
 
@@ -102,60 +83,65 @@ export default function HomeContent({ offres }: { offres: Offre[] }) {
           </div>
         </div>
 
-        {/* Stats band */}
+        {/* Bandeau de preuves (4 items) */}
         <div className="relative z-10 bg-betapower-darkblue/80 backdrop-blur-sm border-t border-white/10">
-          <div className="max-w-6xl mx-auto px-6 lg:px-16 py-7 grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-white/10">
-            {stats.map(({ value, label }) => (
-              <div key={label} className="text-center py-4 sm:py-0">
-                <p className="text-2xl font-bold text-betapower-gold">{value}</p>
-                <p className="text-white/55 text-sm mt-1">{label}</p>
-              </div>
-            ))}
+          <div className="max-w-6xl mx-auto px-6 lg:px-16 py-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {proofPoints.map((point, idx) => (
+                <div key={idx} className="text-center sm:text-left">
+                  <p className="text-white/85 text-sm leading-relaxed">
+                    {point}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ── NOS OFFRES ──────────────────────────────────────────── */}
+      {/* ── TROIS PILIERS (cliquables) ────────────────────────── */}
       <section className="bg-betapower-bg py-24 px-4">
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.85, ease: 'easeOut', delay: 0.15 }}
-            className="mb-12"
+            className="mb-12 text-center"
           >
-            <h2 className="text-gray-900 mb-3">Nos offres</h2>
+            <h2 className="text-gray-900 mb-3">Nos domaines d'expertise</h2>
             <p className="text-gray-500 text-lg" style={{ fontFamily: 'var(--font-inter, sans-serif)' }}>
               Un accompagnement sur mesure pour vos enjeux réseau.
             </p>
           </motion.div>
 
           <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+            className="grid grid-cols-1 md:grid-cols-3 gap-6"
             variants={gridVariants}
             initial="hidden"
             animate="visible"
           >
-            {offres.map((offre, i) => {
-              const Icon = icons[i % icons.length]
+            {pillars.map((pillar) => {
+              const Icon = pillar.icon
               return (
                 <motion.div
-                  key={offre.slug}
+                  key={pillar.href}
                   variants={cardVariants}
                   transition={{ duration: 0.85, ease: 'easeOut' }}
                 >
                   <Link
-                    href={`/offres/${offre.slug}`}
-                    className="bg-white rounded-lg p-7 border border-gray-200 hover:shadow-[inset_4px_0_0_#D97706,0_4px_16px_rgba(0,0,0,0.08)] transition-all duration-200 group h-full flex flex-col"
+                    href={pillar.href}
+                    className="bg-white rounded-lg p-8 border border-gray-200 hover:shadow-[inset_4px_0_0_#D97706,0_4px_16px_rgba(0,0,0,0.08)] transition-all duration-200 group h-full flex flex-col"
                   >
                     <div className="text-betapower-azure mb-5">
-                      {Icon && <Icon size={28} />}
+                      <Icon size={32} />
                     </div>
-                    <h3 className="font-semibold text-gray-900 mb-2 group-hover:text-betapower-darkblue text-base leading-snug">
-                      {offre.title}
+                    <h3 className="font-bold text-gray-900 mb-3 group-hover:text-betapower-darkblue text-xl leading-snug">
+                      {pillar.title}
                     </h3>
-                    <p className="text-sm text-gray-500 mb-5 flex-1 leading-relaxed">{offre.description}</p>
-                    <span className="text-sm font-medium text-betapower-azure group-hover:underline">
+                    <p className="text-sm text-gray-600 leading-relaxed flex-1">
+                      {pillar.description}
+                    </p>
+                    <span className="text-sm font-medium text-betapower-azure group-hover:underline mt-4 inline-block">
                       En savoir plus →
                     </span>
                   </Link>
@@ -163,6 +149,18 @@ export default function HomeContent({ offres }: { offres: Offre[] }) {
               )
             })}
           </motion.div>
+        </div>
+      </section>
+
+      {/* ── BLOC CTA FINAL ──────────────────────────────────────── */}
+      <section className="bg-betapower-darkblue py-16 px-4">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-white text-2xl sm:text-3xl font-semibold mb-6">
+            Un enjeu d'exploitation, de formation ou de digitalisation ?
+          </h2>
+          <Link href="/contact" className="btn-primary inline-block">
+            Contactez nous pour un premier échange
+          </Link>
         </div>
       </section>
     </>

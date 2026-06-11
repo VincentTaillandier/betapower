@@ -3,54 +3,13 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
-import { PiEngine, PiLightbulb, PiShootingStar, PiBookOpenLight } from 'react-icons/pi'
+import { expertises, valeurs } from '@/lib/apropos'
 
 const fadeUp = { hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }
 const containerVariants = {
   hidden: {},
   visible: { transition: { staggerChildren: 0.12, delayChildren: 0.1 } },
 }
-
-const expertises = [
-  {
-    icon: PiEngine,
-    title: 'Systèmes HTB / HTA',
-    desc: 'Conception, analyse et exploitation des réseaux haute et très haute tension.',
-  },
-  {
-    icon: PiLightbulb,
-    title: 'Simulateurs OTS',
-    desc: 'Déploiement, paramétrage et ingénierie pédagogique des simulateurs de formation réseau.',
-  },
-  {
-    icon: PiShootingStar,
-    title: 'Intégration ENR',
-    desc: "Études d'intégration des énergies renouvelables dans les réseaux de transport et de distribution.",
-  },
-  {
-    icon: PiBookOpenLight,
-    title: 'Pilotage projet réglementé',
-    desc: 'Coordination de projets complexes soumis aux contraintes réglementaires du secteur énergie.',
-  },
-]
-
-const valeurs = [
-  {
-    titre: 'Excellence',
-    texte:
-      "Chaque mission est abordée avec le même niveau d'exigence qu'un projet stratégique. Je m'appuie sur une veille technique permanente et une rigueur méthodologique issue du terrain pour produire des livrables qui tiennent à l'épreuve de l'opérationnel — pas seulement du bureau.",
-  },
-  {
-    titre: 'Intégrité',
-    texte:
-      "Je ne prends que les missions pour lesquelles je peux apporter une valeur réelle. Quand une limite est atteinte, je le dis clairement. Cette transparence construit la confiance sur le long terme et évite les désillusions à mi-parcours, quand les enjeux sont les plus élevés.",
-  },
-  {
-    titre: 'Partenariat',
-    texte:
-      "Je travaille aux côtés de vos équipes, pas au-dessus d'elles. Ma posture est celle d'un pair expert, capable de monter en compétence avec vous et de transférer les savoir-faire. Une mission réussie, c'est une équipe cliente plus forte à la fin qu'au début.",
-  },
-]
 
 export default function AProposContent() {
   return (
@@ -142,7 +101,7 @@ export default function AProposContent() {
             transition={{ duration: 0.85, ease: 'easeOut' }}
             className="mb-14"
           >
-            <h2 className="text-gray-900 mb-3">Ce que je maîtrise</h2>
+            <h2 className="text-gray-900 mb-3">Mes domaines d'expertise</h2>
           </motion.div>
 
           <motion.div
@@ -225,7 +184,7 @@ export default function AProposContent() {
           </Link>
           <div className="mt-6">
             <a
-              href="https://www.linkedin.com/in/vincent-taillandier"
+              href="https://www.linkedin.com/in/vincent-taillandier-15574a150/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-white/45 text-sm hover:text-white/70 transition-colors"

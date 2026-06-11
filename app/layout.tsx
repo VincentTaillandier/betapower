@@ -16,9 +16,24 @@ const playfair = Playfair_Display({
 })
 
 export const metadata: Metadata = {
-  title: 'BetaPower — Expertise en infrastructure réseau électrique',
+  title: {
+    template: '%s — BetaPower',
+    default: 'BetaPower — Expertise en exploitation des réseaux électriques',
+  },
   description:
-    'Conseil, audit et expertise en infrastructure de réseau électrique pour opérateurs et industriels.',
+    'Conseil, audit et expertise en exploitation des réseaux électriques pour GRT, opérateurs et industriels.',
+  openGraph: {
+    type: 'website',
+    locale: 'fr_FR',
+    url: 'https://www.betapower.fr',
+    siteName: 'BetaPower',
+    /* TODO: Ajouter les balises hreflang fr/en/es dès la mise en ligne multilingue
+    alternateLanguages: {
+      'en': 'https://www.betapower.fr/en',
+      'es': 'https://www.betapower.fr/es',
+    },
+    */
+  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

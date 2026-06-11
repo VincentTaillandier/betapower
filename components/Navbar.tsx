@@ -4,14 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useState, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
-
-const links = [
-  { href: '/',         label: 'Accueil' },
-  { href: '/offres',   label: 'Offres' },
-  { href: '/a-propos', label: 'À propos' },
-  { href: '/projets',  label: 'Projets' },
-  { href: '/contact',  label: 'Contact' },
-]
+import { navLinks as links } from '@/lib/nav'
 
 export default function Navbar() {
   const [open, setOpen]       = useState(false)

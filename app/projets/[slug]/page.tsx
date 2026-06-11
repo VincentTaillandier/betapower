@@ -1,37 +1,48 @@
-import { getBySlug, getSlugs, markdownToHtml } from '@/lib/markdown'
-import Link from 'next/link'
+import { notFound } from 'next/navigation'
+import type { Metadata } from 'next'
+import { getProjects, getProjectBySlug } from '@/lib/projects-data'
+import { getBySlug } from '@/lib/markdown'
+import ProjectDetail from '@/components/ProjectDetail'
 
-export async function generateStaticParams() {
-  return getSlugs('projects').map((slug) => ({ slug }))
+type ProjectPageProps = {
+  params: Promise<{ slug: string }>
 }
 
-export default async function ProjetPage({
-  params,
-}: {
-  params: Promise<{ slug: string }>
-}) {
+export async function generateMetadata({ params }: ProjectPageProps): Promise<Metadata> {
   const { slug } = await params
-  const { frontmatter, content } = getBySlug('projects', decodeURIComponent(slug))
-  const contentHtml = await markdownToHtml(content)
+  const project = getProjectBySlug(slug)
+  if (!project) return { title: 'Projet non trouvé' }
+  return {
+    title: `${project.title} | BetaPower`,
+    description: project.description,
+  }
+}
+
+export const dynamicParams = false
+
+export async function generateStaticParams() {
+  const projects = getProjects()
+  return projects.map((project) => ({ slug: project.slug }))
+}
+
+export default async function ProjectPage({ params }: ProjectPageProps) {
+  const { slug } = await params
+  const project = getProjectBySlug(slug)
+  if (!project) notFound()
+
+  const { content } = getBySlug('projects', slug)
 
   return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 py-16">
-      <Link href="/projets" className="text-betapower-azure hover:underline text-sm mb-8 inline-block">
-        ← Retour aux projets
-      </Link>
-      <h1 className="text-4xl font-bold text-gray-900 mb-2">{frontmatter.title}</h1>
-      {frontmatter.client && (
-        <p className="text-betapower-azure font-medium mb-1">Client : {frontmatter.client}</p>
-      )}
-      {frontmatter.date && (
-        <p className="text-sm text-gray-400 mb-6">{frontmatter.date}</p>
-      )}
-      {frontmatter.description && (
-        <p className="text-xl text-gray-500 mb-10 border-l-4 border-betapower-azure pl-4">
-          {frontmatter.description}
-        </p>
-      )}
-      <article className="prose" dangerouslySetInnerHTML={{ __html: contentHtml }} />
-    </div>
+    <>
+      <section className="bg-betapower-darkblue flex items-center" style={{ minHeight: 300 }}>
+        <div className="max-w-6xl mx-auto w-full px-6 lg:px-16 py-16">
+          <h1 className="text-white mb-4">{project!.title}</h1>
+          <p className="text-white/60 text-lg" style={{ fontFamily: 'var(--font-inter, sans-serif)' }}>
+            {project!.description}
+          </p>
+        </div>
+      </section>
+      <ProjectDetail project={project!} markdownContent={content} />
+    </>
   )
 }
