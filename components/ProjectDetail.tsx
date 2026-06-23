@@ -1,7 +1,6 @@
 'use client'
 
 import Link from 'next/link'
-import { motion } from 'framer-motion'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { Projet } from '@/types/project'
@@ -11,21 +10,11 @@ type ProjectDetailProps = {
   markdownContent: string
 }
 
-const fadeIn = {
-  hidden: { opacity: 0, y: 12 },
-  visible: { opacity: 1, y: 0 }
-}
-
 export default function ProjectDetail({ project, markdownContent }: ProjectDetailProps) {
   return (
     <section className="bg-white py-20 px-6">
       <div className="max-w-4xl mx-auto">
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={fadeIn}
-          transition={{ duration: 0.85 }}
-        >
+        <div className="animate-fade-in-up">
           <span className="inline-block text-xs font-bold uppercase tracking-wider mb-6 px-4 py-2 rounded-full bg-betapower-gold/10 text-betapower-gold">
             Étude de cas
           </span>
@@ -78,6 +67,28 @@ export default function ProjectDetail({ project, markdownContent }: ProjectDetai
             {markdownContent}
           </ReactMarkdown>
 
+          {/* Offres liées */}
+          {project.offresLiees && project.offresLiees.length > 0 && (
+            <div className="mt-10 bg-betapower-darkblue/5 rounded-lg p-6 border-l-4 border-betapower-azure">
+              <p className="text-gray-700 mb-4 font-medium">Ces compétences vous intéressent ?</p>
+              <div className="flex flex-wrap gap-3">
+                {project.offresLiees.map((offre, i) => (
+                  <Link
+                    key={offre.slug}
+                    href={`/offres/${offre.slug}`}
+                    className={`inline-flex items-center px-4 py-2 rounded-lg font-medium text-sm transition-all
+                      ${i === 0
+                        ? 'bg-white border-2 border-betapower-azure text-betapower-azure hover:bg-betapower-azure hover:text-white'
+                        : 'bg-white border-2 border-gray-300 text-gray-700 hover:border-betapower-azure hover:text-betapower-azure'
+                      }`}
+                  >
+                    {offre.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
+
           {/* CTA */}
           <div className="mt-12 pt-8 border-t border-gray-100 flex items-center gap-6">
             <Link href="/contact" className="btn-primary">
@@ -87,7 +98,7 @@ export default function ProjectDetail({ project, markdownContent }: ProjectDetai
               ← Tous les projets
             </Link>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   )

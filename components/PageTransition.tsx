@@ -1,22 +1,9 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { usePathname } from 'next/navigation'
-
-const PageTransition = ({ children }: { children: React.ReactNode }) => {
-  const pathname = usePathname()
-
-  return (
-    <motion.div
-      key={pathname}
-      initial={{ opacity: 0, y: 6 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.85, ease: 'easeOut' }}
-      style={{ flex: 1, display: 'flex', flexDirection: 'column' }}
-    >
-      {children}
-    </motion.div>
-  )
-}
+const PageTransition = ({ children }: { children: React.ReactNode }) => (
+  <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
+    {children}
+  </div>
+)
 
 export default PageTransition

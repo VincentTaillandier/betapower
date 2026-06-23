@@ -1,25 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { motion } from 'framer-motion'
 import { proofPoints, pillars } from '@/lib/home'
-
-const heroVariants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.1, delayChildren: 0.1 } },
-}
-const heroItem = {
-  hidden: { opacity: 0, y: 14 },
-  visible: { opacity: 1, y: 0 },
-}
-const gridVariants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.09, delayChildren: 0.4 } },
-}
-const cardVariants = {
-  hidden: { opacity: 0, y: 14 },
-  visible: { opacity: 1, y: 0 },
-}
 
 export default function HomeContent() {
   return (
@@ -29,57 +11,41 @@ export default function HomeContent() {
         className="relative flex flex-col"
         style={{ minHeight: 'calc(100vh - 64px)' }}
       >
-        {/* Solid background instead of missing image */}
         <div className="absolute inset-0 bg-gradient-to-br from-betapower-darkblue to-betapower-darkblue/90" />
 
-        {/* Hero content */}
         <div className="relative z-10 flex-1 flex items-center">
           <div className="max-w-6xl mx-auto w-full px-6 lg:px-16 py-20">
-            <motion.div variants={heroVariants} initial="hidden" animate="visible">
 
-              <motion.p
-                className="text-white/70 text-base font-medium mb-6"
-                variants={heroItem}
-                transition={{ duration: 0.6, ease: 'easeOut' }}
+            <p className="text-white/70 text-base font-medium mb-6">
+              L'expertise de l'exploitation du réseau électrique au service des acteurs du secteur
+            </p>
+
+            <h1
+              className="text-white max-w-3xl mb-7"
+              style={{ fontSize: 'clamp(2.25rem, 4.5vw, 3.75rem)', lineHeight: 1.12 }}
+            >
+              Expertise en exploitation des réseaux électriques
+            </h1>
+
+            <p
+              className="text-white/70 max-w-2xl mb-10"
+              style={{ fontSize: '1.125rem', lineHeight: 1.75 }}
+            >
+              Études de réseau, formation des opérateurs, simulateurs de conduite, codes de réseau ENTSO-E, automatisation CGMES : BetaPower apporte aux acteurs du système électrique une expertise forgée en salle de conduite et éprouvée dans plus de dix pays.
+            </p>
+
+            <div className="flex flex-wrap gap-4 items-center">
+              <Link href="/contact" className="btn-primary">
+                Contactez-nous pour un premier échange
+              </Link>
+              <Link
+                href="/offres"
+                className="text-white text-sm font-medium underline underline-offset-4 hover:text-white/70 transition-colors"
               >
-                L'expertise de l'exploitation du réseau électrique au service des acteurs du secteur
-              </motion.p>
+                Découvrir les offres →
+              </Link>
+            </div>
 
-              <motion.h1
-                className="text-white max-w-3xl mb-7"
-                style={{ fontSize: 'clamp(2.25rem, 4.5vw, 3.75rem)', lineHeight: 1.12 }}
-                variants={heroItem}
-                transition={{ duration: 0.5, ease: 'easeOut' }}
-              >
-                Expertise en exploitation des réseaux électriques
-              </motion.h1>
-
-              <motion.p
-                className="text-white/70 max-w-2xl mb-10"
-                style={{ fontSize: '1.125rem', lineHeight: 1.75 }}
-                variants={heroItem}
-                transition={{ duration: 0.5, ease: 'easeOut' }}
-              >
-                Études de réseau, formation des opérateurs, simulateurs de conduite, codes de réseau ENTSO-E, automatisation CGMES : BetaPower apporte aux acteurs du système électrique une expertise forgée en salle de conduite et éprouvée dans plus de dix pays.
-              </motion.p>
-
-              <motion.div
-                className="flex flex-wrap gap-4 items-center"
-                variants={heroItem}
-                transition={{ duration: 0.5, ease: 'easeOut' }}
-              >
-                <Link href="/contact" className="btn-primary">
-                  Contactez-nous pour un premier échange
-                </Link>
-                <Link
-                  href="/offres"
-                  className="text-white text-sm font-medium underline underline-offset-4 hover:text-white/70 transition-colors"
-                >
-                  Découvrir les offres →
-                </Link>
-              </motion.div>
-
-            </motion.div>
           </div>
         </div>
 
@@ -102,32 +68,18 @@ export default function HomeContent() {
       {/* ── TROIS PILIERS (cliquables) ────────────────────────── */}
       <section className="bg-betapower-bg py-24 px-4">
         <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.85, ease: 'easeOut', delay: 0.15 }}
-            className="mb-12 text-center"
-          >
+          <div className="mb-12 text-center">
             <h2 className="text-gray-900 mb-3">Nos domaines d'expertise</h2>
             <p className="text-gray-500 text-lg" style={{ fontFamily: 'var(--font-inter, sans-serif)' }}>
               Un accompagnement sur mesure pour vos enjeux réseau.
             </p>
-          </motion.div>
+          </div>
 
-          <motion.div
-            className="grid grid-cols-1 md:grid-cols-3 gap-6"
-            variants={gridVariants}
-            initial="hidden"
-            animate="visible"
-          >
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {pillars.map((pillar) => {
               const Icon = pillar.icon
               return (
-                <motion.div
-                  key={pillar.href}
-                  variants={cardVariants}
-                  transition={{ duration: 0.85, ease: 'easeOut' }}
-                >
+                <div key={pillar.href}>
                   <Link
                     href={pillar.href}
                     className="bg-white rounded-lg p-8 border border-gray-200 hover:shadow-[inset_4px_0_0_#D97706,0_4px_16px_rgba(0,0,0,0.08)] transition-all duration-200 group h-full flex flex-col"
@@ -145,10 +97,10 @@ export default function HomeContent() {
                       En savoir plus →
                     </span>
                   </Link>
-                </motion.div>
+                </div>
               )
             })}
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -159,7 +111,7 @@ export default function HomeContent() {
             Un enjeu d'exploitation, de formation ou de digitalisation ?
           </h2>
           <Link href="/contact" className="btn-primary inline-block">
-            Contactez nous pour un premier échange
+            Contactez-nous pour un premier échange
           </Link>
         </div>
       </section>

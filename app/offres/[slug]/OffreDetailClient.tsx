@@ -1,12 +1,12 @@
 'use client'
 
 import Link from 'next/link'
-import { motion } from 'framer-motion'
 import { Offre, VersionDetaillee } from '@/lib/offres'
 
 interface OffreDetailClientProps {
   offre: Offre
   pillarName: string
+  relatedProjects?: { slug: string; title: string }[]
 }
 
 interface SectionConfig {
@@ -36,44 +36,33 @@ const sectionsConfig: SectionConfig[] = [
 ]
 
 function renderListItem(item: string, idx: number) {
-  // Handle bold markdown (**text**)
   const parts = item.split('**')
   return (
     <li key={idx} className="text-gray-700 leading-relaxed">
-      {parts.map((part, i) => 
+      {parts.map((part, i) =>
         i % 2 === 1 ? <strong key={i}>{part}</strong> : part
       )}
     </li>
   )
 }
 
-export default function OffreDetailClient({ offre, pillarName }: OffreDetailClientProps) {
+export default function OffreDetailClient({ offre, pillarName, relatedProjects }: OffreDetailClientProps) {
   const detail = offre.versionDetaillee
-  
+
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 py-16">
       {/* Breadcrumb */}
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="mb-8"
-      >
-        <Link 
-          href="/offres" 
+      <div className="animate-fade-in-up mb-8">
+        <Link
+          href="/offres"
           className="text-sm text-betapower-azure hover:underline"
         >
           ← Retour aux offres
         </Link>
-      </motion.div>
+      </div>
 
       {/* Title Section */}
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 0.1 }}
-        className="mb-12"
-      >
+      <div className="animate-fade-in-up mb-12" style={{ animationDelay: '100ms' }}>
         <div className="mb-3">
           <span className="text-sm font-medium text-betapower-azure uppercase tracking-wide">
             {pillarName}
@@ -85,18 +74,13 @@ export default function OffreDetailClient({ offre, pillarName }: OffreDetailClie
         <p className="text-xl text-gray-600 leading-relaxed">
           {detail.sousTitre}
         </p>
-      </motion.div>
+      </div>
 
       {/* Content Sections */}
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 0.2 }}
-        className="prose prose-lg max-w-none"
-      >
+      <div className="prose prose-lg max-w-none">
         {sectionsConfig.map((section) => {
           const value = detail[section.key]
-          
+
           if (!value) return null
 
           return (
@@ -104,7 +88,7 @@ export default function OffreDetailClient({ offre, pillarName }: OffreDetailClie
               {section.titre && (
                 <h2 className="text-2xl font-bold text-gray-900 mb-4">{section.titre}</h2>
               )}
-              
+
               {section.type === 'paragraphe' ? (
                 <p className="text-gray-700 leading-relaxed">
                   {value as string}
@@ -123,15 +107,29 @@ export default function OffreDetailClient({ offre, pillarName }: OffreDetailClie
             </div>
           )
         })}
-      </motion.div>
+      </div>
+
+      {/* Projets liés */}
+      {relatedProjects && relatedProjects.length > 0 && (
+        <div className="mt-12 mb-4">
+          <h2 className="text-xl font-bold text-gray-900 mb-4">Projets liés</h2>
+          <ul className="space-y-2">
+            {relatedProjects.map(p => (
+              <li key={p.slug}>
+                <Link
+                  href={`/projets/${p.slug}`}
+                  className="text-betapower-azure hover:text-betapower-gold transition-colors font-medium"
+                >
+                  {p.title} →
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
 
       {/* CTA */}
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 0.3 }}
-        className="mt-16 bg-betapower-darkblue rounded-xl p-8 text-center"
-      >
+      <div className="animate-fade-in-up mt-16 bg-betapower-darkblue rounded-xl p-8 text-center">
         <h2 className="text-white text-2xl font-semibold mb-4">
           Intéressé par cette offre ?
         </h2>
@@ -141,7 +139,7 @@ export default function OffreDetailClient({ offre, pillarName }: OffreDetailClie
         <Link href="/contact" className="btn-primary inline-block">
           Prendre contact
         </Link>
-      </motion.div>
+      </div>
     </div>
   )
 }

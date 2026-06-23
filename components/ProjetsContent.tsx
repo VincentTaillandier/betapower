@@ -1,7 +1,6 @@
 'use client'
 
 import Link from 'next/link'
-import { motion } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
 import { Projet } from '@/types/project'
 
@@ -60,16 +59,12 @@ export default function ProjetsContent({ projects }: ProjetsContentProps) {
       {/* ── HERO ─────────────────────────────────────────────── */}
       <section className="bg-betapower-darkblue flex items-center" style={{ minHeight: 300 }}>
         <div className="max-w-6xl mx-auto w-full px-6 lg:px-16 py-16">
-          <motion.div
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.85, ease: 'easeOut' }}
-          >
+          <div className="animate-fade-in-up">
             <h1 className="text-white mb-4">Projets &amp; Réalisations</h1>
             <p className="text-white/60 text-lg" style={{ fontFamily: 'var(--font-inter, sans-serif)' }}>
               Des missions concrètes, des résultats mesurables.
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -137,18 +132,14 @@ export default function ProjetsContent({ projects }: ProjetsContentProps) {
 
       {/* ── CTA ──────────────────────────────────────────────── */}
       <section className="bg-betapower-darkblue py-20 px-6 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.85, ease: 'easeOut' }}
-        >
+        <div className="animate-fade-in-up">
           <p className="text-white text-xl mb-8" style={{ fontFamily: 'var(--font-inter, sans-serif)' }}>
             Votre projet pourrait être le prochain.
           </p>
           <Link href="/contact" className="btn-primary">
             Contactez-nous
           </Link>
-        </motion.div>
+        </div>
       </section>
     </>
   )
