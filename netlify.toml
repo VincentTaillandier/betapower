@@ -13,3 +13,22 @@
 
 [build.environment]
   NODE_VERSION = "20"
+
+# Canonical domain: https://betapower.fr (non-www, HTTPS)
+[[redirects]]
+  from = "https://www.betapower.fr/*"
+  to = "https://betapower.fr/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://www.betapower.fr/*"
+  to = "https://betapower.fr/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://betapower.fr/*"
+  to = "https://betapower.fr/:splat"
+  status = 301
+  force = true
