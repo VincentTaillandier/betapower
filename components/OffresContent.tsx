@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import { useEffect } from 'react'
 import { offresData, Offre, Pillar } from '@/lib/offres'
 
 interface OffreCardProps {
@@ -73,6 +74,16 @@ function PillarSection({ pillar, pillarKey }: PillarSectionProps) {
 }
 
 export default function OffresContent() {
+  useEffect(() => {
+    const hash = window.location.hash
+    if (!hash) return
+    const id = hash.slice(1)
+    const t = setTimeout(() => {
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+    }, 80)
+    return () => clearTimeout(t)
+  }, [])
+
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16">
       {/* Header avec introduction */}

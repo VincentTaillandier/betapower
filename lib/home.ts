@@ -19,19 +19,19 @@ export const pillars: PillarHome[] = [
   {
     title: "Opérer.",
     description: "Études de réseau, procédures opérationnelles, appui aux centres de conduite, audits de l'exploitation.",
-    href: "/offres#operer",
+    href: "/offres/#operer",
     icon: PiEngine,
   },
   {
     title: "Former.",
     description: "Formation des dispatchers et des ingénieurs : conduite en régime normal et dégradé, reconstitution du réseau, codes de réseau, marchés de l'électricité — en salle et sur simulateur.",
-    href: "/offres#former",
+    href: "/offres/#former",
     icon: PiChalkboardTeacher,
   },
   {
     title: "Digitaliser.",
     description: "Configuration de simulateurs de conduite (OTS), automatisation de processus, modélisation CIM/CGMES.",
-    href: "/offres#digitaliser",
+    href: "/offres/#digitaliser",
     icon: PiCpu,
   },
 ]
