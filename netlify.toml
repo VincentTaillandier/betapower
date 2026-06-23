@@ -4,6 +4,10 @@
   command = "npm run build"
   publish = "out"
 
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
 # Security headers are defined in public/_headers file
 # and will be automatically applied by Netlify
 
