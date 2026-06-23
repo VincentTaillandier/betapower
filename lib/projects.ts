@@ -1,38 +1,30 @@
-import fs from 'fs'
-import path from 'path'
-import matter from 'gray-matter'
+import { getSlugs, getBySlug } from './markdown'
+import { Projet } from '@/types/project'
 
-const projectsDirectory = path.join(process.cwd(), 'content/projects')
-
-export interface ProjectData {
-  slug: string
-  title: string
-  description: string
-  client: string
-  date: string
-  content: string
+function fromFrontmatter(slug: string): Projet {
+  const { frontmatter } = getBySlug('projects', slug)
+  return {
+    slug,
+    title: (frontmatter.title as string) ?? '',
+    description: (frontmatter.description as string) ?? '',
+    date: (frontmatter.date as string) ?? '',
+    client: (frontmatter.client as string) ?? '',
+    skills: (frontmatter.skills as string[]) ?? [],
+    contexteSummary: frontmatter.contexteSummary as string | undefined,
+    offresLiees: frontmatter.offresLiees as { slug: string; label: string }[] | undefined,
+  }
 }
 
-export function getAllProjects(): ProjectData[] {
-  const fileNames = fs.readdirSync(projectsDirectory)
-  const allProjects = fileNames
-    .filter((fileName) => /^[a-z0-9-]+\.md$/.test(fileName))
-    .map((fileName) => {
-      const fullPath = path.join(projectsDirectory, fileName)
-      const fileContents = fs.readFileSync(fullPath, 'utf8')
-      const { data, content } = matter(fileContents)
-      const slug = data.slug || fileName.replace(/\.md$/, '')
-
-      return {
-        slug,
-        title: data.title || '',
-        description: data.description || '',
-        client: data.client || '',
-        date: data.date || '',
-        content,
-      }
-    })
-
-  return allProjects.sort((a, b) => (a.date > b.date ? -1 : 1))
+export function getProjects(): Projet[] {
+  return getSlugs('projects')
+    .map(fromFrontmatter)
+    .sort((a, b) => (a.date > b.date ? -1 : 1))
 }
 
+export function getProjectBySlug(slug: string): Projet | undefined {
+  try {
+    return fromFrontmatter(slug)
+  } catch {
+    return undefined
+  }
+}

@@ -10,7 +10,7 @@ export interface Frontmatter {
   date?: string
   client?: string
   tags?: string
-  [key: string]: string | undefined
+  [key: string]: unknown
 }
 
 export function getSlugs(subDir: string): string[] {

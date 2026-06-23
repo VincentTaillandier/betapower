@@ -6,30 +6,33 @@ client: "Rte international"
 date: "2026"
 skills: ["Simulateur OTS", "Configuration", "Formation", "Documentation", "Recette"]
 contexteSummary: "Configuration, recette et documentation du déploiement d'un simulateur OTS auprès des équipes opérationnelles."
+offresLiees:
+  - slug: "ots-ingenierie-scenarios"
+    label: "Voir l'offre \"Simulateurs de conduite\""
+  - slug: "audit-exploitation"
+    label: "Voir l'offre \"Audit & Exploitation\""
 ---
 
 ## Contexte
 
-Dans le cadre du renouvellement de son système SCADA/OTS, RTE a fait appel à Rte international pour l'appuyer au déploiement.
-Nous avons réalisé et automatisé le transfert de plus de 100 scénarios vers le nouvel OTS de RTE pour le compte de Rte international.
+RTE déploie un nouveau simulateur de réseau OTS (Operator Training System) destiné à la formation des opérateurs. La mission consiste à appuyer le pilote de projet dans toutes les phases du déploiement : configuration, recette, documentation et formation des équipes.
 
 ## Enjeux
 
-- Garantir la continuité opérationnelle lors de la transition vers le nouveau simulateur
-- Automatiser le processus de migration pour réduire les délais et les erreurs
-- Former les équipes internes sur la configuration et l'utilisation du nouvel OTS
-- Assurer la qualité et la cohérence des scénarios transférés
+- Garantir la conformité du simulateur aux exigences métier et aux scénarios de formation existants.
+- Assurer la montée en compétence des équipes locales sur le nouvel outil.
+- Livrer une documentation complète permettant l'exploitation autonome du simulateur.
+- Respecter le calendrier de déploiement et les jalons de recette.
 
 ## Notre intervention
 
-- Génération de la situation de base pour les entités opérationnelles
-- Implémentation de la stratégie d'automatisation de la création des scénarios dans les entités opérationnelles
-- Configuration de l'OTS et peuplement des données réseau
-- Création d'un corpus documentaire à destination des utilisateurs du simulateur (configurateurs, formateurs)
-- Réalisation des recettes des correctifs apportés par le fournisseur de la solution logicielle
+- **Configuration du simulateur** : Paramétrage du simulateur OTS selon les spécifications métier : topologie réseau, modèles de production, interfaces opérateur.
+- **Recette fonctionnelle** : Définition et exécution des cas de test de recette, identification et suivi des anomalies jusqu'à leur résolution.
+- **Formation des utilisateurs** : Animation de sessions de formation pour les formateurs et les opérateurs, adaptation des supports pédagogiques au nouvel outil.
+- **Documentation technique** : Rédaction des guides d'exploitation, procédures de maintenance et fiches de référence pour l'équipe locale.
 
 ## Résultats
 
-- 50 fonctionnalités recettées
-- 100 scénarios transférés en 6 semaines (contre 1 an sans automatisation)
-- Création d'un corpus de documentation opérationnelles
+- Simulateur déployé et validé en recette, opérationnel pour la formation des dispatchers.
+- Équipes formées et autonomes sur l'administration et l'utilisation du simulateur.
+- Documentation complète livrée, permettant la continuité d'exploitation sans dépendance externe.

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import ProjetsContent from '@/components/ProjetsContent'
-import { getProjects } from '@/lib/projects-data'
+import { getProjects } from '@/lib/projects'
 
 export const metadata: Metadata = {
   title: 'Références BetaPower — Simulateur OTS RTE, calcul de capacité RCC, codes de réseau, formations internationales',

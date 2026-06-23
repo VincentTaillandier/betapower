@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
-import { getProjects, getProjectBySlug } from '@/lib/projects-data'
+import { getProjects, getProjectBySlug } from '@/lib/projects'
 import { getBySlug } from '@/lib/markdown'
 import ProjectDetail from '@/components/ProjectDetail'
 
