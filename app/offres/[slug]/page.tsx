@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { offresData, Offre, Pillar } from '@/lib/offres'
+import { getProjects } from '@/lib/projects'
 import OffreDetailClient from './OffreDetailClient'
 
 interface OffreDetailPageProps {
@@ -21,7 +22,7 @@ export async function generateMetadata({ params }: OffreDetailPageProps): Promis
     }
   }
   
-  if (!offreFound || !offreFound.versionDetaillee) {
+  if (!offreFound) {
     return {
       title: 'Offre non trouvée',
       description: 'Cette offre n\'existe pas.',
@@ -33,6 +34,8 @@ export async function generateMetadata({ params }: OffreDetailPageProps): Promis
     description: offreFound.versionDetaillee.sousTitre,
   }
 }
+
+export const dynamicParams = false
 
 export function generateStaticParams() {
   const params: { slug: string }[] = []
@@ -63,9 +66,13 @@ export default async function OffreDetailPage({ params }: OffreDetailPageProps) 
     }
   }
   
-  if (!offreFound || !offreFound.versionDetaillee) {
+  if (!offreFound) {
     notFound()
   }
   
-  return <OffreDetailClient offre={offreFound} pillarName={pillarName} />
+  const relatedProjects = getProjects()
+    .filter(p => p.offresLiees?.some(o => o.slug === slug))
+    .map(p => ({ slug: p.slug, title: p.title }))
+
+  return <OffreDetailClient offre={offreFound} pillarName={pillarName} relatedProjects={relatedProjects} />
 }
