@@ -1,21 +1,53 @@
-# Security headers for Netlify
-# These headers will be applied to all routes
+# BetaPower — HTTP Security Headers
+# Single source of truth: this file only. No [[headers]] in netlify.toml.
+# Next.js copies public/_headers → out/_headers. Netlify reads out/_headers at serve time.
+#
+# CSP directive rationale:
+#   default-src 'self'
+#       Baseline for all resource types not listed explicitly.
+#
+#   script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com
+#       'unsafe-inline' is unavoidable: Next.js App Router (static export) injects
+#       inline <script> blocks to stream the RSC payload (__next_f). Nonce-based
+#       approaches require a server render per request and are impossible here.
+#       https://challenges.cloudflare.com loads the Turnstile challenge widget.
+#
+#   style-src 'self' 'unsafe-inline'
+#       'unsafe-inline' is required: React renders style="" attributes inline on DOM
+#       elements (Next.js Image uses color:transparent, animations use inline delay,
+#       font variables use inline style props). A nonce would have the same constraint.
+#
+#   img-src 'self' data:
+#       'self' for local images (logo, etc.).
+#       data: allows the inline SVG placeholder Next.js Image renders before load.
+#
+#   font-src 'self'
+#       next/font/google downloads and self-hosts fonts at build time — no external CDN.
+#
+#   connect-src 'self' https://challenges.cloudflare.com
+#       'self' covers /.netlify/functions/contact (same origin as the static site).
+#       https://challenges.cloudflare.com for Turnstile's internal verification calls.
+#
+#   frame-src https://challenges.cloudflare.com
+#       Turnstile renders its challenge UI inside a Cloudflare-hosted iframe.
+#
+#   object-src 'none'
+#       Explicitly block plugins (Flash, Java applets). Stricter than default-src 'self'.
+#
+#   frame-ancestors 'self'
+#       CSP-level clickjacking protection (complements X-Frame-Options for CSP2+ browsers).
+#
+#   base-uri 'self'
+#       Prevent base-tag injection attacks that redirect all relative URLs.
+#
+#   form-action 'self'
+#       The contact form submits via fetch() — native form POST is not used.
 
 /*
-  # Prevent MIME type sniffing
   X-Content-Type-Options: nosniff
-  
-  # Control referrer information
-  Referrer-Policy: strict-origin-when-cross-origin
-  
-  # Prevent clickjacking
   X-Frame-Options: SAMEORIGIN
-  
-  # Content Security Policy - adjust as needed for your site
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self'; frame-ancestors 'self'
-  
-  # Permissions Policy - disable sensitive features
+  Referrer-Policy: strict-origin-when-cross-origin
+  Strict-Transport-Security: max-age=31536000
   Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=()
-  
-  # Enable XSS protection (legacy but good for older browsers)
-  X-XSS-Protection: 1; mode=block
+  X-XSS-Protection: 0
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; object-src 'none'; frame-ancestors 'self'; base-uri 'self'; form-action 'self'
