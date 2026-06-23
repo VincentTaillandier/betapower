@@ -35,12 +35,9 @@ export default function HomeContent() {
             </p>
 
             <div className="flex flex-wrap gap-4 items-center">
-              <Link href="/contact" className="btn-primary">
-                Contactez-nous pour un premier échange
-              </Link>
               <Link
                 href="/offres"
-                className="text-white text-sm font-medium underline underline-offset-4 hover:text-white/70 transition-colors"
+                className="btn-primary"
               >
                 Découvrir les offres →
               </Link>
@@ -104,17 +101,6 @@ export default function HomeContent() {
         </div>
       </section>
 
-      {/* ── BLOC CTA FINAL ──────────────────────────────────────── */}
-      <section className="bg-betapower-darkblue py-16 px-4">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-white text-2xl sm:text-3xl font-semibold mb-6">
-            Un enjeu d'exploitation, de formation ou de digitalisation ?
-          </h2>
-          <Link href="/contact" className="btn-primary inline-block">
-            Contactez-nous pour un premier échange
-          </Link>
-        </div>
-      </section>
     </>
   )
 }
