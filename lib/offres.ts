@@ -106,10 +106,10 @@ export const offresData: OffresData = {
       },
       {
         id: "conseil-operationnel",
-        title: "Conseil opérationnel et appui à l'exploitation",
+        title: "Conseil opérationnel",
         versionCourte: "Rédaction et harmonisation de procédures opérationnelles, préparation des essais de mise en service, optimisation de schémas d'exploitation.",
         versionDetaillee: {
-          titre: "Conseil opérationnel et appui à l'exploitation",
+          titre: "Conseil opérationnel",
           sousTitre: "L'expérience de la salle de conduite, mise au service de vos procédures et de vos équipes.",
           contexte: "Les centres de conduite font face à une complexité croissante : intégration massive d'EnR et de stockage, exigences réglementaires, renouvellement des équipes, multiplication des mises en service. Les procédures opérationnelles sont l'ossature de la sûreté du système — elles doivent être justes, à jour, harmonisées et appropriées par les opérateurs.",
           expertiseApportee: [
@@ -131,10 +131,10 @@ export const offresData: OffresData = {
       },
       {
         id: "audit-exploitation",
-        title: "Audit de l'exploitation et préparation aux situations d'urgence",
+        title: "Audit de l'exploitation",
         versionCourte: "Audit des règles de conduite, des procédures opérationnelles et de l'organisation du centre de contrôle. Évaluation des plans de défense et de reconstitution du réseau.",
         versionDetaillee: {
-          titre: "Audit de l'exploitation et préparation à la reconstitution du réseau",
+          titre: "Audit de l'exploitation",
           sousTitre: "Un diagnostic indépendant de vos pratiques de conduite et de votre résilience opérationnelle.",
           objectif: "Donner à la direction technique une vision objective de la maturité de son exploitation : organisation du centre de conduite, qualité et couverture des procédures, gestion des situations d'urgence (plan de défense, reconstitution), conformité aux référentiels (codes ENTSO-E, bonnes pratiques GRT), compétences et entraînement des équipes.",
           derouleType: [
@@ -167,7 +167,7 @@ export const offresData: OffresData = {
     offres: [
       {
         id: "formation-operateurs",
-        title: "Formation des opérateurs et des équipes",
+        title: "Formation des opérateurs",
         versionCourte: "Formation des dispatchers et ingénieurs : conduite en situation normale et dégradée, reconstitution du réseau, codes ENTSO-E.",
         versionDetaillee: {
           titre: "Formation des opérateurs de réseau et des équipes techniques",
@@ -205,10 +205,10 @@ export const offresData: OffresData = {
       },
       {
         id: "codes-reseau-conformite",
-        title: "Codes de réseau et conformité réglementaire",
+        title: "Codes de réseau",
         versionCourte: "Analyse d'écarts vis-à-vis des codes ENTSO-E (SOGL, E&R, RfG) et des référentiels nationaux. Traduction des exigences en procédures opérationnelles et appui aux GRT et régulateurs.",
         versionDetaillee: {
-          titre: "Codes de réseau, réglementation et conformité opérationnelle",
+          titre: "Codes de réseau",
           sousTitre: "Du texte réglementaire à la procédure de conduite.",
           contexte: "Les cadres réglementaires évoluent vite : codes européens (SOGL, Emergency & Restoration, RfG, règlements marchés), synchronisations de nouveaux pays avec l'Europe continentale, refonte des lois électricité et codes de réseau dans de nombreux pays. L'enjeu n'est pas d'être conforme sur le papier : c'est que les exigences se traduisent en pratiques de conduite, en procédures, en formation et en outils.",
           expertiseApportee: [
@@ -228,11 +228,11 @@ export const offresData: OffresData = {
         },
       },
       {
-        id: "projets-internationaux-due-diligence",
-        title: "Appui aux projets internationaux et due diligence technique",
+        id: "due-diligence",
+        title: "Due diligence technique",
         versionCourte: "Due diligence technique de projets de raccordement (production, consommation et stockage) et d'interconnexion, analyses de l'équilibre offre-demande, clauses techniques de PPA.",
         versionDetaillee: {
-          titre: "Appui aux projets internationaux et due diligence technique",
+          titre: "Due diligence technique",
           sousTitre: "Sécuriser les décisions d'investissement par l'analyse réseau, réglementaire et opérationnelle.",
           contexte: "Bailleurs, gouvernements, investisseurs et développeurs ont besoin d'évaluations techniques indépendantes : un projet de production peut-il évacuer son énergie ? Les échanges transfrontaliers envisagés sont-ils techniquement et juridiquement réalistes ? Le système SCADA/EMS livré est-il conforme au cahier des charges ?",
           expertiseApportee: [
@@ -259,10 +259,10 @@ export const offresData: OffresData = {
     offres: [
       {
         id: "ots-ingenierie-scenarios",
-        title: "Simulateurs de conduite (OTS) : ingénierie et scénarios",
+        title: "Simulateurs de conduite (OTS)",
         versionCourte: "Paramétrage et configuration de simulateurs OTS, création de scénarios de formation (régime normal, dégradé, blackout, reconstitution) et construction des situations de réseau associées.",
         versionDetaillee: {
-          titre: "Ingénierie de simulateurs de conduite (OTS/DTS) et scénarios de formation",
+          titre: "Simulateurs de conduite (OTS)",
           sousTitre: "Un simulateur ne vaut que par ses scénarios et la qualité de ses données.",
           contexte: "Les GRT investissent dans des simulateurs de conduite pour répondre aux exigences de formation et préparer leurs équipes aux situations extrêmes. Mais entre la livraison du logiciel et un programme d'entraînement opérationnel, l'essentiel reste à faire : modéliser les situations de réseau, construire des scénarios pédagogiques réalistes, alimenter et maintenir les bases de données.",
           ceQueNousFaisons: [
@@ -283,10 +283,10 @@ export const offresData: OffresData = {
       },
       {
         id: "donnees-cgmes-automatisation",
-        title: "Données réseau et automatisation (CIM/CGMES, Python)",
+        title: "Modélisation réseau",
         versionCourte: "Modélisation CIM/CGMES, contrôle qualité des modèles, automatisation en Python, peuplement et gestion des bases de données.",
         versionDetaillee: {
-          titre: "Données de réseau, CGMES et automatisation des processus d'études",
+          titre: "Modélisation réseau",
           sousTitre: "Industrialiser les études de réseau : modèles fiables, calculs reproductibles, analyses automatisées.",
           contexte: "Les processus européens (calcul de capacité, échanges de modèles CGMES, analyses coordonnées) et la multiplication des études rendent intenables les approches manuelles. GRT et RCC ont besoin de modèles de qualité, de chaînes de calcul automatisées et d'analyses statistiques sur de grands volumes de situations réseau. Rares sont les profils qui maîtrisent à la fois le métier (qu'est-ce qu'un résultat de load flow plausible ?) et la digitalisation(Python, bases de données, CGMES).",
           ceQueNousFaisons: [
