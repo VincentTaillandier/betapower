@@ -1,7 +1,6 @@
 'use client'
 
 import Link from 'next/link'
-import { useEffect, useRef, useState } from 'react'
 import { Projet } from '@/types/project'
 
 type ProjetsContentProps = {
@@ -9,27 +8,10 @@ type ProjetsContentProps = {
 }
 
 function ProjectCard({ project, index }: { project: Projet; index: number }) {
-  const ref = useRef<HTMLDivElement>(null)
-  const [visible, setVisible] = useState(false)
-
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setVisible(true) },
-      { threshold: 0.15 }
-    )
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [])
-
   return (
     <div
-      ref={ref}
-      style={{ transitionDelay: `${index * 150}ms` }}
-      className={`w-72 rounded-2xl flex flex-col items-center justify-start p-5 bg-white border border-gray-100 shadow-md hover:shadow-xl transition-all duration-700 ease-out group
-        ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}
-      `}
+      className="animate-fade-in-up w-72 rounded-2xl flex flex-col items-center justify-start p-5 bg-white border border-gray-100 shadow-md hover:shadow-xl transition-shadow duration-200 ease-out group"
+      style={{ animationDelay: `${index * 150}ms` }}
     >
       <span className="text-xs font-bold uppercase tracking-wider mb-3 px-3 py-1 rounded-full bg-betapower-gold/10 text-betapower-gold">
         {project.date}

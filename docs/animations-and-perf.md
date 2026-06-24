@@ -25,7 +25,7 @@ Hero sections, `<h1>` blocks, and anything above the fold **must** use this patt
 
 ### 2. IntersectionObserver + CSS transitions — for below-the-fold content
 
-Canonical implementation in `components/ProjetsContent.tsx` (`ProjectCard`):
+Reserved for large lists where cards are genuinely off-screen at page load (typically 6+ items). If a list is short enough that all cards are visible in the initial viewport (e.g. 2–3 items), use pattern 1 with stagger instead — the IO fires once at mount and never re-triggers, so cards stay stuck at `opacity-0`.
 
 ```tsx
 const [visible, setVisible] = useState(false)
@@ -45,7 +45,9 @@ useEffect(() => {
 
 Use `transitionDelay: \`${index * 150}ms\`` for staggered reveals.
 
-**This pattern is fine for off-screen cards and sections.** It is FORBIDDEN for anything that is visible on first paint.
+**This pattern is fine for genuinely off-screen cards and sections.** It is FORBIDDEN for anything that is visible on first paint.
+
+> **Note:** `components/ProjetsContent.tsx` previously used this pattern for `ProjectCard`. It was replaced with pattern 1 + stagger because with only 2 projects the cards are always in the initial viewport and the IO never re-triggered after hydration, leaving cards permanently invisible.
 
 ## The LCP Rule — Details
 
