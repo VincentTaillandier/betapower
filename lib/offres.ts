@@ -76,7 +76,7 @@ export const offresData: OffresData = {
       {
         id: "etudes-reseau",
         title: "Études de réseau",
-        versionCourte: "Comprendre le comportement de votre réseau avant qu'il ne vous surprenne. Calculs de répartition (load flow), courts-circuits, tenue de tension, stabilité, analyses de sécurité N-1, calcul de capacité d'échange. Études menées sur des modèles CIM/CGMES, automatisables et reproductibles.",
+        versionCourte: "Calculs de répartition, courts-circuits, plans de tension, stabilité, analyse de sécurité et calcul de capacité.",
         versionDetaillee: {
           titre: "Études de réseau et analyses de sécurité",
           sousTitre: "Des études opérationnelles, reproductibles, fondées sur des modèles de réseau de qualité.",
@@ -107,7 +107,7 @@ export const offresData: OffresData = {
       {
         id: "conseil-operationnel",
         title: "Conseil opérationnel et appui à l'exploitation",
-        versionCourte: "Renforcer vos opérations là où elles se jouent : procédures, conduite, mise en service. Rédaction et harmonisation de procédures opérationnelles, préparation et validation des essais de mise en service, appui aux centres de conduite, optimisation de schémas d'exploitation. Une expertise issue du terrain, directement applicable.",
+        versionCourte: "Rédaction et harmonisation de procédures opérationnelles, préparation des essais de mise en service, optimisation de schémas d'exploitation.",
         versionDetaillee: {
           titre: "Conseil opérationnel et appui à l'exploitation",
           sousTitre: "L'expérience de la salle de conduite, mise au service de vos procédures et de vos équipes.",
@@ -132,7 +132,7 @@ export const offresData: OffresData = {
       {
         id: "audit-exploitation",
         title: "Audit de l'exploitation et préparation aux situations d'urgence",
-        versionCourte: "Améliorer votre résilience face aux risques d'incidents de grande ampleur. Audit des pratiques de conduite, des procédures, de l'organisation des centres de contrôle et de la préparation aux situations d'urgence et à la reconstitution. Constats factuels, recommandations hiérarchisées, plan d'action réaliste.",
+        versionCourte: "Audit des règles de conduite, des procédures opérationnelles et de l'organisation du centre de contrôle. Évaluation des plans de défense et de reconstitution du réseau.",
         versionDetaillee: {
           titre: "Audit de l'exploitation et préparation à la reconstitution du réseau",
           sousTitre: "Un diagnostic indépendant de vos pratiques de conduite et de votre résilience opérationnelle.",
@@ -168,7 +168,7 @@ export const offresData: OffresData = {
       {
         id: "formation-operateurs",
         title: "Formation des opérateurs et des équipes",
-        versionCourte: "Former ceux qui exploitent le réseau. Formations conçues et animées par un ancien dispatcher : conduite en régime normal et dégradé, gestion des incidents, reconstitution du réseau, codes de réseau ENTSO-E, marchés de l'électricité. En salle, sur site ou sur simulateur de conduite (OTS/DTS). Du dispatcher junior à l'équipe de direction technique — en France et à l'international.",
+        versionCourte: "Formation des dispatchers et ingénieurs : conduite en situation normale et dégradée, reconstitution du réseau, codes ENTSO-E.",
         versionDetaillee: {
           titre: "Formation des opérateurs de réseau et des équipes techniques",
           sousTitre: "La conduite des réseaux s'apprend avec ceux qui l'ont pratiquée.",
@@ -206,7 +206,7 @@ export const offresData: OffresData = {
       {
         id: "codes-reseau-conformite",
         title: "Codes de réseau et conformité réglementaire",
-        versionCourte: "Traduction des règlements en procédures opérationnelles. Analyse d'écarts vis-à-vis des exigences ENTSO-E (SOGL, E&R, RfG…), traduction des exigences réglementaires en procédures opérationnelles, appui aux régulateurs et aux GRT.",
+        versionCourte: "Analyse d'écarts vis-à-vis des codes ENTSO-E (SOGL, E&R, RfG) et des référentiels nationaux. Traduction des exigences en procédures opérationnelles et appui aux GRT et régulateurs.",
         versionDetaillee: {
           titre: "Codes de réseau, réglementation et conformité opérationnelle",
           sousTitre: "Du texte réglementaire à la procédure de conduite.",
@@ -230,7 +230,7 @@ export const offresData: OffresData = {
       {
         id: "projets-internationaux-due-diligence",
         title: "Appui aux projets internationaux et due diligence technique",
-        versionCourte: "L'expertise réseau au service de vos projets. Due diligence technique de projets de production et d'interconnexion, analyses offre-demande, faisabilité d'évacuation et d'export, clauses techniques de PPA, assistance technique aux GRT pour le compte de bailleurs, supervision de recettes SCADA/EMS.",
+        versionCourte: "Due diligence technique de projets de raccordement (production, consommation et stockage) et d'interconnexion, analyses de l'équilibre offre-demande, clauses techniques de PPA.",
         versionDetaillee: {
           titre: "Appui aux projets internationaux et due diligence technique",
           sousTitre: "Sécuriser les décisions d'investissement par l'analyse réseau, réglementaire et opérationnelle.",
@@ -260,7 +260,7 @@ export const offresData: OffresData = {
       {
         id: "ots-ingenierie-scenarios",
         title: "Simulateurs de conduite (OTS) : ingénierie et scénarios",
-        versionCourte: "Faire de votre simulateur un véritable outil d'entraînement. Paramétrage et configuration d'OTS, création de scénarios de formation (du régime normal au blackout et à la reconstitution), construction des situations de réseau associées (CGMES), ingénierie des données pour alimenter le simulateur.",
+        versionCourte: "Paramétrage et configuration de simulateurs OTS, création de scénarios de formation (régime normal, dégradé, blackout, reconstitution) et construction des situations de réseau associées.",
         versionDetaillee: {
           titre: "Ingénierie de simulateurs de conduite (OTS/DTS) et scénarios de formation",
           sousTitre: "Un simulateur ne vaut que par ses scénarios et la qualité de ses données.",
@@ -284,7 +284,7 @@ export const offresData: OffresData = {
       {
         id: "donnees-cgmes-automatisation",
         title: "Données réseau et automatisation (CIM/CGMES, Python)",
-        versionCourte: "Appui à vos processus d'études de réseaux. Modélisation CIM/CGMES, fiabilisation de la qualité des modèles, automatisation des études, du calcul de capacité et des analyses a posteriori en Python, bases de données de situations réseau, tableaux de bord. Le pont entre vos ingénieurs réseau et vos données.",
+        versionCourte: "Modélisation CIM/CGMES, contrôle qualité des modèles, automatisation en Python, peuplement et gestion des bases de données.",
         versionDetaillee: {
           titre: "Données de réseau, CGMES et automatisation des processus d'études",
           sousTitre: "Industrialiser les études de réseau : modèles fiables, calculs reproductibles, analyses automatisées.",
