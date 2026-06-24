@@ -38,6 +38,17 @@ ANALYZE=true npm run build                             # only when touching bund
 Format: `type(scope): description` — types: `fix feat perf chore refactor sec seo ui`  
 Never commit a red build. Branch for risky tasks. Validate on Netlify Deploy Preview before merging.
 
+## Pre-Push Maintenance Audit
+
+Run this audit before pushing, and whenever touching infra or tooling:
+
+- **Root `.md` files** (README, PERFORMANCE, SECURITY, etc.): verify every command, path, and library reference matches current code. Delete files whose content is fully covered by `docs/`. A stale root doc is worse than no doc.
+- **No-op wrappers**: components or layouts that do only `return <>{children}</>` with no styling → delete. They add confusion without value.
+- **Auto-generated files** (`next-env.d.ts`, `*.tsbuildinfo`): must not appear in `git status` as modified/added. If they do, check `.gitignore`.
+- **framer-motion** (`grep -r "framer-motion" app/ components/ lib/`): must return 0 results, always.
+- **`docs/` cross-references**: if a path, script name, library, or rule cited in AGENTS.md or a `docs/*.md` file has changed, update the doc in the same commit.
+- **Dead env vars / secrets references**: any new env var used in code must be listed in `README.md` and documented in `docs/seo-security-deploy.md`.
+
 ## Read-Before-Touch Triggers
 
 | Touching… | Read first |

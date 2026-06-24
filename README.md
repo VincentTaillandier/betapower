@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# BetaPower
 
-## Getting Started
+Site vitrine B2B — expertise en exploitation des réseaux électriques (études de réseau, formation opérateurs, simulateurs OTS, codes ENTSO-E, automatisation CGMES).
 
-First, run the development server:
+**Stack:** Next.js 16 · React 19 · Tailwind 4 · TypeScript · App Router · Static Export  
+**Hosting:** Netlify (SSG, `output: "export"`)
+
+## Development
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run dev          # dev server → http://localhost:3000
+npm run build        # production build + link check + model validation
+npm run lint         # eslint
+ANALYZE=true npm run build   # bundle analysis
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+`npm run build` runs `next build` then automatically:
+- `scripts/check-links.js` — verifies all internal links in `out/`
+- `scripts/validate-model.js` — verifies `offresLiees[].offreId` references and slug consistency
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+app/                    # Next.js App Router pages
+components/             # React components (one per page + shared)
+lib/                    # Data (offres.ts) and utilities (seo.ts, projects.ts, …)
+content/projects/       # Project case studies in Markdown
+netlify/functions/      # Serverless functions (contact form via Resend)
+public/_headers         # Security headers (single source of truth)
+scripts/                # Post-build validators
+docs/                   # On-demand knowledge files (read triggers in AGENTS.md)
+```
 
-## Learn More
+## Key constraints
 
-To learn more about Next.js, take a look at the following resources:
+- **Static export only** — no API routes, no SSR. Contact form → `netlify/functions/contact.js`.
+- **No framer-motion** — animations are CSS-only.
+- **trailingSlash: true** — all internal links must end with `/`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+See `AGENTS.md` for the full list of non-negotiable rules and quality gates.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Deployment
 
-## Deploy on Vercel
+Hosted on Netlify. Every push to `main` triggers a deploy. Validate on the Netlify Deploy Preview before merging.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Required env vars (set in Netlify dashboard):
+- `RESEND_API_KEY`
+- `TURNSTILE_SECRET_KEY`
+- `TURNSTILE_SITE_KEY`
