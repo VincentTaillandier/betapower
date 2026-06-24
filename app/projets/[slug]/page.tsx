@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import { getProjects, getProjectBySlug } from '@/lib/projects'
 import { getBySlug } from '@/lib/markdown'
 import ProjectDetail from '@/components/ProjectDetail'
+import MarkdownContent from '@/components/MarkdownContent'
 import { canonical, SITE_NAME, SITE_URL, DEFAULT_OG_IMAGE } from '@/lib/seo'
 
 type ProjectPageProps = {
@@ -65,7 +66,9 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           </p>
         </div>
       </section>
-      <ProjectDetail project={project!} markdownContent={content} />
+      <ProjectDetail project={project!}>
+        <MarkdownContent content={content} />
+      </ProjectDetail>
     </>
   )
 }
