@@ -97,9 +97,14 @@ export default function HomeContent() {
                     <h3 className="font-bold text-gray-900 mb-3 group-hover:text-betapower-darkblue text-xl leading-snug">
                       {pillar.title}
                     </h3>
-                    <p className="text-sm text-gray-600 leading-relaxed flex-1">
-                      {pillar.description}
-                    </p>
+                    <ul className="grid grid-cols-2 gap-x-3 gap-y-1.5 text-sm text-gray-600 flex-1">
+                      {pillar.description.map((item, i) => (
+                        <li key={i} className="flex items-baseline gap-1.5 leading-snug">
+                          <span className="text-betapower-azure shrink-0">·</span>
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
                     <span className="text-sm font-medium text-betapower-azure group-hover:underline mt-4 inline-block">
                       En savoir plus →
                     </span>
