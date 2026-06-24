@@ -22,7 +22,7 @@ export const pillars: PillarHome[] = [
       "Études de réseau",
       "Procédures opérationnelles",
       "Appui aux centres de conduite",
-      "Audits de l'exploitation",
+      "Audits d'exploitation",
     ],
     href: "/offres/#operer",
     icon: PiEngine,
@@ -30,11 +30,10 @@ export const pillars: PillarHome[] = [
   {
     title: "Former.",
     description: [
-      "Formation des dispatchers et ingénieurs",
-      "Conduite normale et dégradée",
+      "Formation en salle et sur simulateur",
+      "Situations normales et dégradées",
       "Reconstitution du réseau",
-      "Codes de réseau · marchés de l'électricité",
-      "En salle et sur simulateur",
+      "Codes de réseau"
     ],
     href: "/offres/#former",
     icon: PiChalkboardTeacher,
@@ -42,9 +41,10 @@ export const pillars: PillarHome[] = [
   {
     title: "Digitaliser.",
     description: [
-      "Configuration de simulateurs de conduite (OTS)",
+      "Configuration d'outils",
       "Automatisation de processus",
       "Modélisation CIM/CGMES",
+      "Gestion des bases de données"
     ],
     href: "/offres/#digitaliser",
     icon: PiCpu,
