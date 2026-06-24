@@ -14,7 +14,7 @@ function OffreCard({ offre, index }: OffreCardProps) {
   return (
     <div
       className="animate-fade-in-up"
-      style={{ animationDelay: `${index * 80}ms` }}
+      style={{ animationDelay: `${index * 110}ms` }}
     >
       <Link
         href={`/offres/${offre.id}`}

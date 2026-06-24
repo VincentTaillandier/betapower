@@ -29,14 +29,14 @@ export default function HomeContent() {
 
             <p
               className="animate-fade-in-up text-white/70 max-w-2xl mb-10"
-              style={{ fontSize: '1.125rem', lineHeight: 1.75, animationDelay: '80ms' }}
+              style={{ fontSize: '1.125rem', lineHeight: 1.75, animationDelay: '120ms' }}
             >
               Études de réseau, formation des opérateurs, simulateurs de conduite, codes de réseau ENTSO-E, automatisation CGMES : BetaPower apporte aux acteurs du système électrique une expertise forgée en salle de conduite et éprouvée dans plus de dix pays.
             </p>
 
             <div
               className="animate-fade-in-up flex flex-wrap gap-4 items-center"
-              style={{ animationDelay: '160ms' }}
+              style={{ animationDelay: '240ms' }}
             >
               <Link
                 href="/offres"
@@ -52,7 +52,7 @@ export default function HomeContent() {
         {/* Bandeau de preuves (4 items) */}
         <div
           className="animate-fade-in-up relative z-10 bg-betapower-darkblue/80 backdrop-blur-sm border-t border-white/10"
-          style={{ animationDelay: '240ms' }}
+          style={{ animationDelay: '380ms' }}
         >
           <div className="max-w-6xl mx-auto px-6 lg:px-16 py-8">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -85,7 +85,7 @@ export default function HomeContent() {
                 <div
                   key={pillar.href}
                   className="animate-fade-in-up"
-                  style={{ animationDelay: `${pillarIdx * 120}ms` }}
+                  style={{ animationDelay: `${pillarIdx * 150}ms` }}
                 >
                   <Link
                     href={pillar.href}

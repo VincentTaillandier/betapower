@@ -186,7 +186,7 @@ export default function ContactContent() {
         onSubmit={handleSubmit}
         noValidate
         className="bg-white rounded-xl p-8 shadow-sm border border-gray-100 space-y-5 animate-fade-in-up"
-        style={{ animationDelay: '150ms' }}
+        style={{ animationDelay: '200ms' }}
       >
         {/* Honeypot — hidden from humans, checked server-side */}
         <input

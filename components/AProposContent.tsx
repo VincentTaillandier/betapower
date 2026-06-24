@@ -53,7 +53,7 @@ export default function AProposContent() {
               <div
                 key={titre}
                 className="animate-fade-in-up"
-                style={{ animationDelay: `${idx * 80}ms` }}
+                style={{ animationDelay: `${idx * 120}ms` }}
               >
                 <h3
                   className="mb-4"
@@ -82,7 +82,7 @@ export default function AProposContent() {
               <div
                 key={title}
                 className="card flex gap-5 items-start animate-fade-in-up"
-                style={{ animationDelay: `${idx * 80}ms` }}
+                style={{ animationDelay: `${idx * 120}ms` }}
               >
                 <div className="text-betapower-azure shrink-0 mt-1">
                   <Icon size={28} />

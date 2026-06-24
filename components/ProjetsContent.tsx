@@ -12,7 +12,7 @@ function ProjectCard({ project, index }: { project: Projet; index: number }) {
   return (
     <div
       className="animate-fade-in-up w-72 rounded-2xl flex flex-col items-center justify-start p-5 bg-white border border-gray-100 shadow-md hover:shadow-xl transition-shadow duration-200 ease-out group"
-      style={{ animationDelay: `${index * 150}ms` }}
+      style={{ animationDelay: `${index * 180}ms` }}
     >
       <span className="text-xs font-bold uppercase tracking-wider mb-3 px-3 py-1 rounded-full bg-betapower-gold/10 text-betapower-gold">
         {project.date}
