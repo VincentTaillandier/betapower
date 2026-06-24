@@ -48,6 +48,8 @@ Run this audit before pushing, and whenever touching infra or tooling:
 - **framer-motion** (`grep -r "framer-motion" app/ components/ lib/`): must return 0 results, always.
 - **`docs/` cross-references**: if a path, script name, library, or rule cited in AGENTS.md or a `docs/*.md` file has changed, update the doc in the same commit.
 - **Dead env vars / secrets references**: any new env var used in code must be listed in `README.md` and documented in `docs/seo-security-deploy.md`.
+- **Content doc vs live code sync** (`docs/BetaPower_Contenu_Site_FINAL_v*.md`): before pushing any change to `lib/offres.ts`, `lib/home.ts`, `lib/apropos.ts`, or `content/projects/`, verify the content doc still matches the live copy (pillar titles, offre titles/IDs, proof points, anonymization grid). If it diverges materially: (1) update the doc, (2) rename it to the next version (`v2.md` → `v3.md`), (3) update the filename in the trigger table below — all in the same commit.
+- **`docs/` knowledge files** (`animations-and-perf.md`, `content-and-routing.md`, `seo-security-deploy.md`): scan for stale references (renamed files, removed scripts, changed commands) whenever the area they cover is touched. Update in the same commit as the code change.
 
 ## Read-Before-Touch Triggers
 
@@ -56,4 +58,4 @@ Run this audit before pushing, and whenever touching infra or tooling:
 | Any visual component, animation, or entry reveal | `docs/animations-and-perf.md` |
 | Content, routing, offres/projects data, or sitemap | `docs/content-and-routing.md` |
 | SEO, headers/CSP, contact form, or Netlify config | `docs/seo-security-deploy.md` |
-| Content copy, client anonymization rules, i18n starter (EN/ES) | `docs/BetaPower_Contenu_Site_FINAL_v2.md` (code overrides v2 on naming discrepancies) |
+| Content copy, client anonymization rules, i18n starter (EN/ES) | `docs/BetaPower_Contenu_Site_FINAL_v2.md` — update + rename to v3 when copy diverges; code always overrides on naming |
