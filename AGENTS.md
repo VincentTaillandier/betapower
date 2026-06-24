@@ -56,4 +56,4 @@ Run this audit before pushing, and whenever touching infra or tooling:
 | Any visual component, animation, or entry reveal | `docs/animations-and-perf.md` |
 | Content, routing, offres/projects data, or sitemap | `docs/content-and-routing.md` |
 | SEO, headers/CSP, contact form, or Netlify config | `docs/seo-security-deploy.md` |
-| Historical content/editorial decisions | `docs/BetaPower_Contenu_Site_FINAL_v2.md` |
+| Content copy, client anonymization rules, i18n starter (EN/ES) | `docs/BetaPower_Contenu_Site_FINAL_v2.md` (code overrides v2 on naming discrepancies) |
