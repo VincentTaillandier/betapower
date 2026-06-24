@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { offresData } from '@/lib/offres'
+import PageHero from '@/components/PageHero'
 
 declare global {
   interface Window {
@@ -178,12 +179,9 @@ export default function ContactContent() {
   const isSubmitting = formState === 'submitting'
 
   return (
-    <div className="max-w-2xl mx-auto px-4 sm:px-6 py-16">
-      <div className="animate-fade-in-up">
-        <h1 className="text-4xl font-bold text-gray-900 mb-4">Contact</h1>
-        <p className="text-gray-500 text-lg mb-10">Décrivez-nous votre besoin, nous vous répondons sous 48h.</p>
-      </div>
-
+    <>
+      <PageHero title="Contact" subtitle="Décrivez-nous votre besoin, nous vous répondons sous 48h." />
+      <div className="max-w-2xl mx-auto px-4 sm:px-6 py-16">
       <form
         onSubmit={handleSubmit}
         noValidate
@@ -385,5 +383,6 @@ export default function ContactContent() {
         </p>
       </form>
     </div>
+    </>
   )
 }

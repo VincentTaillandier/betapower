@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { useEffect } from 'react'
 import { offresData, Offre, Pillar } from '@/lib/offres'
+import PageHero from '@/components/PageHero'
 
 interface OffreCardProps {
   offre: Offre
@@ -85,21 +86,17 @@ export default function OffresContent() {
   }, [])
 
   return (
-    <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16">
-      {/* Header avec introduction */}
-      <div className="animate-fade-in-up mb-16">
-        <h1 className="text-4xl font-bold text-gray-900 mb-8">
-          Une expertise, trois manières de vous servir : opérer, former, digitaliser.
-        </h1>
-
-        <div className="prose prose-lg max-w-none">
-          <p className="text-gray-700 mb-4 leading-relaxed">
-            BetaPower intervient sur l'ensemble du cycle de vie opérationnel des réseaux électriques : préparation de l'exploitation, conduite, retour d'expérience, formation des équipes et mise en données des réseaux. Chaque mission s'appuie sur une expérience directe de la conduite d'un réseau de transport et sur la maîtrise des référentiels du secteur — codes de réseau ENTSO-E, CIM/CGMES, pratiques des GRT européens.
-          </p>
-          <p className="text-gray-700 leading-relaxed">
-            Les offres ci-dessous sont des cadres de départ : chaque mission est dimensionnée sur mesure, avec un livrable et des critères de réussite définis dès le cadrage.
-          </p>
-        </div>
+    <>
+      <PageHero title="Une expertise, trois manières de vous servir : opérer, former, digitaliser." />
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16">
+      {/* Introduction */}
+      <div className="animate-fade-in-up prose prose-lg max-w-none mb-16">
+        <p className="text-gray-700 mb-4 leading-relaxed">
+          BetaPower intervient sur l'ensemble du cycle de vie opérationnel des réseaux électriques : préparation de l'exploitation, conduite, retour d'expérience, formation des équipes et mise en données des réseaux. Chaque mission s'appuie sur une expérience directe de la conduite d'un réseau de transport et sur la maîtrise des référentiels du secteur — codes de réseau ENTSO-E, CIM/CGMES, pratiques des GRT européens.
+        </p>
+        <p className="text-gray-700 leading-relaxed">
+          Les offres ci-dessous sont des cadres de départ : chaque mission est dimensionnée sur mesure, avec un livrable et des critères de réussite définis dès le cadrage.
+        </p>
       </div>
 
       {/* Pillars */}
@@ -120,5 +117,6 @@ export default function OffresContent() {
         </Link>
       </div>
     </div>
+    </>
   )
 }

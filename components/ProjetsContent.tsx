@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { Projet } from '@/types/project'
+import PageHero from '@/components/PageHero'
 
 type ProjetsContentProps = {
   projects: Projet[]
@@ -38,17 +39,10 @@ function ProjectCard({ project, index }: { project: Projet; index: number }) {
 export default function ProjetsContent({ projects }: ProjetsContentProps) {
   return (
     <>
-      {/* ── HERO ─────────────────────────────────────────────── */}
-      <section className="bg-betapower-darkblue flex items-center" style={{ minHeight: 300 }}>
-        <div className="max-w-6xl mx-auto w-full px-6 lg:px-16 py-16">
-          <div className="animate-fade-in-up">
-            <h1 className="text-white mb-4">Projets &amp; Réalisations</h1>
-            <p className="text-white/60 text-lg" style={{ fontFamily: 'var(--font-inter, sans-serif)' }}>
-              Des missions concrètes, des résultats mesurables.
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        title="Projets & Réalisations"
+        subtitle="Des missions concrètes, des résultats mesurables."
+      />
 
       {/* ── TIMELINE ─────────────────────────────────────────── */}
       <section className="bg-white py-24 px-6">

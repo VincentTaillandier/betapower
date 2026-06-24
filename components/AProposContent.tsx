@@ -2,21 +2,15 @@
 
 import Link from 'next/link'
 import { expertises, valeurs } from '@/lib/apropos'
+import PageHero from '@/components/PageHero'
 
 export default function AProposContent() {
   return (
     <>
-      {/* ── HERO ────────────────────────────────────────────── */}
-      <section className="bg-betapower-darkblue py-24 px-6">
-        <div className="max-w-4xl mx-auto">
-          <div className="animate-fade-in-up">
-            <h1 className="text-white mb-4">À propos de BetaPower</h1>
-            <p className="text-betapower-azure text-lg" style={{ fontFamily: 'var(--font-inter, sans-serif)' }}>
-              Un cabinet fondé par un ingénieur de terrain
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        title="À propos de BetaPower"
+        subtitle="Un cabinet fondé par un ingénieur de terrain"
+      />
 
       {/* ── FONDATEUR ────────────────────────────────────────── */}
       <section className="bg-white py-24 px-6">
