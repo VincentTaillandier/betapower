@@ -7,9 +7,9 @@ date: "2025"
 skills: ["Simulateur OTS", "Python", "CGMES/CIM", "Automatisation", "Formation"]
 contexteSummary: "Création et migration de 100 scénarios de formation sur simulateur OTS pour entraîner les dispatchers d'un gestionnaire de réseau."
 offresLiees:
-  - slug: "ots-ingenierie-scenarios"
+  - offreId: "ots-ingenierie-scenarios"
     label: "Voir l'offre \"Simulateurs de conduite\""
-  - slug: "formation-operateurs"
+  - offreId: "formation-operateurs"
     label: "Voir l'offre \"Formation\""
 ---
 

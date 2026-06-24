@@ -60,8 +60,9 @@ export default async function OffreDetailPage({ params }: OffreDetailPageProps) 
 
   if (!offreFound) notFound()
 
+  // Note: route param is named [slug] but is fed by offre.id (source of truth in offresData)
   const relatedProjects = getProjects()
-    .filter(p => p.offresLiees?.some(o => o.slug === slug))
+    .filter(p => p.offresLiees?.some(o => o.offreId === slug))
     .map(p => ({ slug: p.slug, title: p.title }))
 
   const serviceJsonLd = {

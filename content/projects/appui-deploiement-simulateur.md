@@ -7,9 +7,9 @@ date: "2026"
 skills: ["Simulateur OTS", "Configuration", "Formation", "Documentation", "Recette"]
 contexteSummary: "Configuration, recette et documentation du déploiement d'un simulateur OTS auprès des équipes opérationnelles."
 offresLiees:
-  - slug: "ots-ingenierie-scenarios"
+  - offreId: "ots-ingenierie-scenarios"
     label: "Voir l'offre \"Simulateurs de conduite\""
-  - slug: "audit-exploitation"
+  - offreId: "audit-exploitation"
     label: "Voir l'offre \"Audit & Exploitation\""
 ---
 

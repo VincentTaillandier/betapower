@@ -6,5 +6,5 @@ export interface Projet {
   client: string
   skills: string[]
   contexteSummary?: string
-  offresLiees?: { slug: string; label: string }[]
+  offresLiees?: { offreId: string; label: string }[]
 }

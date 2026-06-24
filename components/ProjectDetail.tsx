@@ -46,8 +46,8 @@ export default function ProjectDetail({ project, children }: ProjectDetailProps)
               <div className="flex flex-wrap gap-3">
                 {project.offresLiees.map((offre, i) => (
                   <Link
-                    key={offre.slug}
-                    href={`/offres/${offre.slug}`}
+                    key={offre.offreId}
+                    href={`/offres/${offre.offreId}`}
                     className={`inline-flex items-center px-4 py-2 rounded-lg font-medium text-sm transition-all
                       ${i === 0
                         ? 'bg-white border-2 border-betapower-azure text-betapower-azure hover:bg-betapower-azure hover:text-white'

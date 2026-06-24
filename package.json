@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "postbuild": "node scripts/check-links.js",
+    "postbuild": "node scripts/check-links.js && node scripts/validate-model.js",
     "start": "next start",
     "lint": "eslint"
   },

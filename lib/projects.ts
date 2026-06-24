@@ -11,7 +11,7 @@ function fromFrontmatter(slug: string): Projet {
     client: (frontmatter.client as string) ?? '',
     skills: (frontmatter.skills as string[]) ?? [],
     contexteSummary: frontmatter.contexteSummary as string | undefined,
-    offresLiees: frontmatter.offresLiees as { slug: string; label: string }[] | undefined,
+    offresLiees: frontmatter.offresLiees as { offreId: string; label: string }[] | undefined,
   }
 }
 
