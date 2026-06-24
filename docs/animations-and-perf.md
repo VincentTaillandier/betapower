@@ -1,0 +1,86 @@
+# Animations & Performance
+
+> **Trigger:** Read this before any change to a visual component, animation, or entry reveal.
+
+## Two Animation Patterns
+
+### 1. CSS-only at mount — for above-the-fold / hero content
+
+Use a CSS class that animates automatically when the element is rendered. No JS state, no `useEffect`.
+
+```css
+/* globals.css */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(1.5rem); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in-up {
+  animation: fadeInUp 0.7s ease-out both;
+}
+```
+
+Usage: `<div className="animate-fade-in-up">…</div>`
+
+Hero sections, `<h1>` blocks, and anything above the fold **must** use this pattern. The element starts visible in the HTML paint — the animation is purely cosmetic.
+
+### 2. IntersectionObserver + CSS transitions — for below-the-fold content
+
+Canonical implementation in `components/ProjetsContent.tsx` (`ProjectCard`):
+
+```tsx
+const [visible, setVisible] = useState(false)
+useEffect(() => {
+  const observer = new IntersectionObserver(
+    ([entry]) => { if (entry.isIntersecting) setVisible(true) },
+    { threshold: 0.15 }
+  )
+  observer.observe(ref.current!)
+  return () => observer.disconnect()
+}, [])
+
+// Class applied:
+// visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+// + transition-all duration-700 ease-out
+```
+
+Use `transitionDelay: \`${index * 150}ms\`` for staggered reveals.
+
+**This pattern is fine for off-screen cards and sections.** It is FORBIDDEN for anything that is visible on first paint.
+
+## The LCP Rule — Details
+
+**Bug history:** Using `opacity-0` + JS-toggled `opacity-100` on the hero `<h1>` pushed LCP to ~6 s because the browser considered the element invisible until JS ran.
+
+**The invariant:** The LCP candidate (largest visible element on initial viewport) must be painted by the browser without waiting for JavaScript. CSS animations are fine — the browser paints the frame and the animation runs. JS state that gates visibility is not fine.
+
+**How to check:** If you add `opacity-0` to any element that could be above the fold, ask: "Is this toggled by a `useState` / `useEffect`?" If yes, switch to `animate-fade-in-up`.
+
+## prefers-reduced-motion
+
+Wrap motion in `@media (prefers-reduced-motion: reduce)` overrides in `globals.css` when adding new animations:
+
+```css
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in-up { animation: none; }
+}
+```
+
+## Measuring LCP
+
+```bash
+# Lighthouse CLI (requires Chrome)
+npx lighthouse http://localhost:3000 --only-categories=performance --output=json | jq '.categories.performance.score, .audits["largest-contentful-paint"].displayValue'
+```
+
+Target: LCP < 2.5 s on a simulated 4G throttled connection.
+
+## Bundle Analysis
+
+```bash
+ANALYZE=true npm run build
+```
+
+Opens a treemap in the browser. Use when:
+- Adding a new dependency
+- Code-splitting a heavy component (e.g. `react-markdown` is already split off non-content pages)
+- Suspecting a large chunk is being pulled into the main bundle
