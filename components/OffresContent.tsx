@@ -7,25 +7,21 @@ import PageHero from '@/components/PageHero'
 
 interface OffreCardProps {
   offre: Offre
-  variant?: 'default' | 'highlighted'
   index: number
 }
 
-function OffreCard({ offre, variant = 'default', index }: OffreCardProps) {
-  const isHighlighted = variant === 'highlighted'
-
-  const cardClasses = isHighlighted
-    ? "bg-gradient-to-br from-betapower-azure/10 to-betapower-darkblue/10 rounded-lg p-6 border-2 border-betapower-azure hover:shadow-xl transition-all group h-full flex flex-col relative"
-    : "bg-white rounded-lg p-6 border-2 border-gray-200 hover:border-betapower-azure hover:shadow-lg transition-all group h-full flex flex-col"
-
+function OffreCard({ offre, index }: OffreCardProps) {
   return (
     <div
       className="animate-fade-in-up"
       style={{ animationDelay: `${index * 80}ms` }}
     >
-      <Link href={`/offres/${offre.id}`} className={cardClasses}>
+      <Link
+        href={`/offres/${offre.id}`}
+        className="bg-white rounded-lg p-6 border border-gray-200 hover:border-betapower-azure hover:shadow-lg transition-all group h-full flex flex-col"
+      >
         {offre.badge && (
-          <span className="absolute top-4 right-4 bg-betapower-gold text-white text-xs font-bold px-3 py-1 rounded-full">
+          <span className="bg-betapower-gold text-white text-xs font-bold px-3 py-1 rounded-full self-start mb-3">
             {offre.badge}
           </span>
         )}
@@ -51,7 +47,6 @@ interface PillarSectionProps {
 function PillarSection({ pillar, pillarKey }: PillarSectionProps) {
   const Icon = pillar.icon
   const gridCols = pillarKey === 'digitaliser' ? 'md:grid-cols-2' : 'md:grid-cols-2 lg:grid-cols-3'
-  const variant = pillarKey === 'former' ? 'highlighted' : 'default'
 
   return (
     <section id={pillarKey} className="mb-20 scroll-mt-20">
@@ -67,7 +62,7 @@ function PillarSection({ pillar, pillarKey }: PillarSectionProps) {
 
       <div className={`grid grid-cols-1 ${gridCols} gap-6`}>
         {pillar.offres.map((offre, idx) => (
-          <OffreCard key={offre.id} offre={offre} variant={variant} index={idx} />
+          <OffreCard key={offre.id} offre={offre} index={idx} />
         ))}
       </div>
     </section>
@@ -88,7 +83,7 @@ export default function OffresContent() {
   return (
     <>
       <PageHero title="Une expertise, trois manières de vous servir : opérer, former, digitaliser." />
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-24">
       {/* Introduction */}
       <div className="animate-fade-in-up prose prose-lg max-w-none mb-16">
         <p className="text-gray-700 mb-4 leading-relaxed">
@@ -112,7 +107,7 @@ export default function OffresContent() {
         <p className="text-white/80 mb-6 max-w-2xl mx-auto">
           Chaque mission est dimensionnée sur mesure. Discutons de votre enjeu lors d'un premier échange de 30 minutes, sans engagement.
         </p>
-        <Link href="/contact" className="btn-primary inline-block">
+        <Link href="/contact/" className="btn-primary inline-block">
           Contactez nous pour un premier échange
         </Link>
       </div>

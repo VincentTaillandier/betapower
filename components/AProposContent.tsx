@@ -14,7 +14,7 @@ export default function AProposContent() {
 
       {/* ── FONDATEUR ────────────────────────────────────────── */}
       <section className="bg-white py-24 px-6">
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <div
             className="space-y-6 text-gray-600 leading-relaxed max-w-3xl animate-fade-in-up"
             style={{ fontSize: '1rem', lineHeight: 1.8, fontFamily: 'var(--font-inter, sans-serif)' }}
@@ -41,36 +41,9 @@ export default function AProposContent() {
         </div>
       </section>
 
-      {/* ── EXPERTISE ────────────────────────────────────────── */}
-      <section className="bg-betapower-bg py-24 px-6">
-        <div className="max-w-5xl mx-auto">
-          <div className="mb-14">
-            <h2 className="text-gray-900 mb-3">Mes domaines d'expertise</h2>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-            {expertises.map(({ icon: Icon, title, desc }, idx) => (
-              <div
-                key={title}
-                className="card flex gap-5 items-start animate-fade-in-up"
-                style={{ animationDelay: `${idx * 80}ms` }}
-              >
-                <div className="text-betapower-azure shrink-0 mt-1">
-                  <Icon size={28} />
-                </div>
-                <div>
-                  <h3 className="text-gray-900 mb-2" style={{ fontSize: '1.05rem', fontWeight: 600 }}>{title}</h3>
-                  <p className="text-gray-500 text-sm leading-relaxed">{desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ── VALEURS ──────────────────────────────────────────── */}
-      <section className="bg-white py-24 px-6">
-        <div className="max-w-5xl mx-auto">
+      <section className="bg-betapower-bg py-24 px-6">
+        <div className="max-w-6xl mx-auto">
           <div className="mb-14">
             <h2 className="text-gray-900">Mes valeurs</h2>
           </div>
@@ -97,13 +70,40 @@ export default function AProposContent() {
         </div>
       </section>
 
+      {/* ── EXPERTISE ────────────────────────────────────────── */}
+      <section className="bg-white py-24 px-6">
+        <div className="max-w-6xl mx-auto">
+          <div className="mb-14">
+            <h2 className="text-gray-900 mb-3">Mes domaines d'expertise</h2>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+            {expertises.map(({ icon: Icon, title, desc }, idx) => (
+              <div
+                key={title}
+                className="card flex gap-5 items-start animate-fade-in-up"
+                style={{ animationDelay: `${idx * 80}ms` }}
+              >
+                <div className="text-betapower-azure shrink-0 mt-1">
+                  <Icon size={28} />
+                </div>
+                <div>
+                  <h3 className="text-gray-900 mb-2" style={{ fontSize: '1.05rem', fontWeight: 600 }}>{title}</h3>
+                  <p className="text-gray-500 text-sm leading-relaxed">{desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ── CTA ──────────────────────────────────────────────── */}
       <section className="bg-betapower-darkblue py-20 px-6 text-center">
         <div className="animate-fade-in-up">
           <p className="text-white text-xl mb-8" style={{ fontFamily: 'var(--font-inter, sans-serif)' }}>
             Un projet ? Parlons-en directement.
           </p>
-          <Link href="/contact" className="btn-primary">
+          <Link href="/contact/" className="btn-primary">
             Prendre contact
           </Link>
           <div className="mt-6">

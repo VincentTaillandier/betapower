@@ -161,7 +161,7 @@ export default function ContactContent() {
 
   if (formState === 'success') {
     return (
-      <div className="max-w-2xl mx-auto px-4 sm:px-6 py-16">
+      <div className="max-w-2xl mx-auto px-4 sm:px-6 py-24">
         <div className="bg-white rounded-xl p-10 shadow-sm border border-gray-100 text-center animate-fade-in-up">
           <div className="w-12 h-12 rounded-full bg-green-50 flex items-center justify-center mx-auto mb-5">
             <svg className="w-6 h-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -181,7 +181,7 @@ export default function ContactContent() {
   return (
     <>
       <PageHero title="Contact" subtitle="Décrivez-nous votre besoin, nous vous répondons sous 48h." />
-      <div className="max-w-2xl mx-auto px-4 sm:px-6 py-16">
+      <div className="max-w-2xl mx-auto px-4 sm:px-6 py-24">
       <form
         onSubmit={handleSubmit}
         noValidate

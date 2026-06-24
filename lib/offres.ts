@@ -153,7 +153,6 @@ export const offresData: OffresData = {
       {
         id: "formation-operateurs",
         title: "Formation des opérateurs et des équipes",
-        badge: "Offre phare",
         versionCourte: "Former ceux qui exploitent le réseau. Formations conçues et animées par un ancien dispatcher : conduite en régime normal et dégradé, gestion des incidents, reconstitution du réseau, codes de réseau ENTSO-E, marchés de l'électricité. En salle, sur site ou sur simulateur de conduite (OTS/DTS). Du dispatcher junior à l'équipe de direction technique — en France et à l'international.",
         versionDetaillee: {
           titre: "Formation des opérateurs de réseau et des équipes techniques",

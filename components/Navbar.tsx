@@ -55,12 +55,6 @@ export default function Navbar() {
                 {label}
               </Link>
             ))}
-            <Link
-              href="/contact"
-              className="ml-2 bg-betapower-gold text-white text-sm font-semibold px-4 py-2 rounded hover:bg-amber-700 transition-colors duration-200 whitespace-nowrap"
-            >
-              Prendre contact
-            </Link>
           </div>
 
           {/* Mobile burger */}
@@ -96,15 +90,6 @@ export default function Navbar() {
               {label}
             </Link>
           ))}
-          <div className="pt-2 px-4">
-            <Link
-              href="/contact"
-              className="block text-center bg-betapower-gold text-white text-sm font-semibold px-4 py-2.5 rounded hover:bg-amber-700 transition-colors"
-              onClick={() => setOpen(false)}
-            >
-              Prendre contact
-            </Link>
-          </div>
         </div>
       )}
     </nav>
