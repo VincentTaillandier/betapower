@@ -10,7 +10,7 @@ export const proofPoints = [
 
 export interface PillarHome {
   title: string
-  description: string
+  description: string[]
   href: string
   icon: IconType
 }
@@ -18,19 +18,34 @@ export interface PillarHome {
 export const pillars: PillarHome[] = [
   {
     title: "Opérer.",
-    description: "Études de réseau, procédures opérationnelles, appui aux centres de conduite, audits de l'exploitation.",
+    description: [
+      "Études de réseau",
+      "Procédures opérationnelles",
+      "Appui aux centres de conduite",
+      "Audits de l'exploitation",
+    ],
     href: "/offres/#operer",
     icon: PiEngine,
   },
   {
     title: "Former.",
-    description: "Formation des dispatchers et des ingénieurs : conduite en régime normal et dégradé, reconstitution du réseau, codes de réseau, marchés de l'électricité — en salle et sur simulateur.",
+    description: [
+      "Formation des dispatchers et ingénieurs",
+      "Conduite normale et dégradée",
+      "Reconstitution du réseau",
+      "Codes de réseau · marchés de l'électricité",
+      "En salle et sur simulateur",
+    ],
     href: "/offres/#former",
     icon: PiChalkboardTeacher,
   },
   {
     title: "Digitaliser.",
-    description: "Configuration de simulateurs de conduite (OTS), automatisation de processus, modélisation CIM/CGMES.",
+    description: [
+      "Configuration de simulateurs de conduite (OTS)",
+      "Automatisation de processus",
+      "Modélisation CIM/CGMES",
+    ],
     href: "/offres/#digitaliser",
     icon: PiCpu,
   },
