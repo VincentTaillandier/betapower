@@ -16,7 +16,7 @@ export default function HomeContent() {
         <div className="relative z-10 flex-1 flex items-center">
           <div className="max-w-6xl mx-auto w-full px-6 lg:px-16 py-20">
 
-            <p className="text-white/70 text-base font-medium mb-6">
+            <p className="animate-fade-in-up text-white/70 text-base font-medium mb-6">
               L'expertise de l'exploitation du réseau électrique au service des acteurs du secteur
             </p>
 
@@ -28,13 +28,16 @@ export default function HomeContent() {
             </h1>
 
             <p
-              className="text-white/70 max-w-2xl mb-10"
-              style={{ fontSize: '1.125rem', lineHeight: 1.75 }}
+              className="animate-fade-in-up text-white/70 max-w-2xl mb-10"
+              style={{ fontSize: '1.125rem', lineHeight: 1.75, animationDelay: '80ms' }}
             >
               Études de réseau, formation des opérateurs, simulateurs de conduite, codes de réseau ENTSO-E, automatisation CGMES : BetaPower apporte aux acteurs du système électrique une expertise forgée en salle de conduite et éprouvée dans plus de dix pays.
             </p>
 
-            <div className="flex flex-wrap gap-4 items-center">
+            <div
+              className="animate-fade-in-up flex flex-wrap gap-4 items-center"
+              style={{ animationDelay: '160ms' }}
+            >
               <Link
                 href="/offres"
                 className="btn-primary"
@@ -47,7 +50,10 @@ export default function HomeContent() {
         </div>
 
         {/* Bandeau de preuves (4 items) */}
-        <div className="relative z-10 bg-betapower-darkblue/80 backdrop-blur-sm border-t border-white/10">
+        <div
+          className="animate-fade-in-up relative z-10 bg-betapower-darkblue/80 backdrop-blur-sm border-t border-white/10"
+          style={{ animationDelay: '240ms' }}
+        >
           <div className="max-w-6xl mx-auto px-6 lg:px-16 py-8">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {proofPoints.map((point, idx) => (
@@ -65,7 +71,7 @@ export default function HomeContent() {
       {/* ── TROIS PILIERS (cliquables) ────────────────────────── */}
       <section className="bg-betapower-bg py-24 px-4">
         <div className="max-w-6xl mx-auto">
-          <div className="mb-12 text-center">
+          <div className="animate-fade-in-up mb-12 text-center">
             <h2 className="text-gray-900 mb-3">Nos domaines d'expertise</h2>
             <p className="text-gray-500 text-lg" style={{ fontFamily: 'var(--font-inter, sans-serif)' }}>
               Un accompagnement sur mesure pour vos enjeux réseau.
@@ -73,10 +79,14 @@ export default function HomeContent() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {pillars.map((pillar) => {
+            {pillars.map((pillar, pillarIdx) => {
               const Icon = pillar.icon
               return (
-                <div key={pillar.href}>
+                <div
+                  key={pillar.href}
+                  className="animate-fade-in-up"
+                  style={{ animationDelay: `${pillarIdx * 120}ms` }}
+                >
                   <Link
                     href={pillar.href}
                     className="bg-white rounded-lg p-8 border border-gray-200 hover:shadow-[inset_4px_0_0_#D97706,0_4px_16px_rgba(0,0,0,0.08)] transition-all duration-200 group h-full flex flex-col"

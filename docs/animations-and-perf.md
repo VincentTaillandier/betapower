@@ -11,15 +11,28 @@ Use a CSS class that animates automatically when the element is rendered. No JS 
 ```css
 /* globals.css */
 @keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(1.5rem); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.98);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
 }
 .animate-fade-in-up {
-  animation: fadeInUp 0.7s ease-out both;
+  animation: fadeInUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in-up { animation: none; opacity: 1; transform: none; filter: none; }
 }
 ```
 
 Usage: `<div className="animate-fade-in-up">…</div>`
+
+For staggered reveals, add `style={{ animationDelay: '120ms' }}` (increments of ~80–120 ms per item).
 
 Hero sections, `<h1>` blocks, and anything above the fold **must** use this pattern. The element starts visible in the HTML paint — the animation is purely cosmetic.
 

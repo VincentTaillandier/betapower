@@ -55,7 +55,7 @@ function PillarSection({ pillar, pillarKey }: PillarSectionProps) {
 
   return (
     <section id={pillarKey} className="mb-20 scroll-mt-20">
-      <div className="mb-8">
+      <div className="animate-fade-in-up mb-8">
         <div className="flex items-center gap-3 mb-3">
           <Icon size={32} className="text-betapower-azure" />
           <h2 className="text-3xl font-bold text-gray-900">{pillar.pillarTitle}</h2>
