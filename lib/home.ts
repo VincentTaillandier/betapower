@@ -1,5 +1,6 @@
 import { IconType } from 'react-icons'
 import { PiEngine, PiChalkboardTeacher, PiCpu } from 'react-icons/pi'
+import { pillarDescriptions } from '@/lib/offres'
 
 export const proofPoints = [
   "3 ans de conduite opérationnelle du réseau THT en centre exploitation chez RTE",
@@ -18,34 +19,19 @@ export interface PillarHome {
 export const pillars: PillarHome[] = [
   {
     title: "Opérer.",
-    description: [
-      "Études de réseau",
-      "Procédures opérationnelles",
-      "Appui aux centres de conduite",
-      "Audits d'exploitation",
-    ],
+    description: pillarDescriptions.operer,
     href: "/offres/#operer",
     icon: PiEngine,
   },
   {
     title: "Former.",
-    description: [
-      "Formation en salle et sur simulateur",
-      "Situations normales et dégradées",
-      "Reconstitution du réseau",
-      "Codes de réseau"
-    ],
+    description: pillarDescriptions.former,
     href: "/offres/#former",
     icon: PiChalkboardTeacher,
   },
   {
     title: "Digitaliser.",
-    description: [
-      "Configuration d'outils",
-      "Automatisation de processus",
-      "Modélisation CIM/CGMES",
-      "Gestion des bases de données"
-    ],
+    description: pillarDescriptions.digitaliser,
     href: "/offres/#digitaliser",
     icon: PiCpu,
   },

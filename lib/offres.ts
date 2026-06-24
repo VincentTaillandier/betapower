@@ -33,7 +33,7 @@ export interface Offre {
 
 export interface Pillar {
   pillarTitle: string
-  pillarDescription: string
+  pillarDescription: string[]
   icon: IconType
   offres: Offre[]
 }
@@ -44,11 +44,26 @@ export interface OffresData {
   digitaliser: Pillar
 }
 
-// Descriptions des piliers (source unique partagée avec la home)
+// Descriptions des piliers — source unique partagée avec la home (string[] pour bullet list)
 export const pillarDescriptions = {
-  operer: "Études de réseau, procédures opérationnelles, appui aux centres de conduite, audits de l'exploitation.",
-  former: "Formation des dispatchers et des ingénieurs : conduite en régime normal et dégradé, reconstitution du réseau, codes de réseau, marchés de l'électricité — en salle et sur simulateur.",
-  digitaliser: "Configuration de simulateurs de conduite (OTS), automatisation de processus, modélisation CIM/CGMES.",
+  operer: [
+    "Études de réseau",
+    "Procédures opérationnelles",
+    "Appui aux centres de conduite",
+    "Audits d'exploitation",
+  ],
+  former: [
+    "Formation en salle et sur simulateur",
+    "Situations normales et dégradées",
+    "Reconstitution du réseau",
+    "Codes de réseau",
+  ],
+  digitaliser: [
+    "Configuration d'outils",
+    "Automatisation de processus",
+    "Modélisation CIM/CGMES",
+    "Gestion des bases de données",
+  ],
 }
 
 // Structure complète des 8 offres avec contenu court ET détaillé

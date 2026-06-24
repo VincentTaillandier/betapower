@@ -56,7 +56,7 @@ function PillarSection({ pillar, pillarKey }: PillarSectionProps) {
           <h2 className="text-3xl font-bold text-gray-900">{pillar.pillarTitle}</h2>
         </div>
         <p className="text-gray-600 text-lg">
-          {pillar.pillarDescription}
+          {pillar.pillarDescription.join(' · ')}
         </p>
       </div>
 
