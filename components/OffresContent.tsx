@@ -99,19 +99,22 @@ export default function OffresContent() {
       <PillarSection pillar={offresData.former} pillarKey="former" />
       <PillarSection pillar={offresData.digitaliser} pillarKey="digitaliser" />
 
-      {/* CTA Final */}
-      <div className="animate-fade-in-up bg-betapower-darkblue rounded-xl p-8 text-center">
-        <h2 className="text-white text-2xl font-semibold mb-4">
-          Une question sur nos offres ?
-        </h2>
-        <p className="text-white/80 mb-6 max-w-2xl mx-auto">
-          Chaque mission est dimensionnée sur mesure. Discutons de votre enjeu lors d'un premier échange de 30 minutes, sans engagement.
-        </p>
-        <Link href="/contact/" className="btn-primary inline-block">
-          Contactez nous pour un premier échange
-        </Link>
       </div>
-    </div>
+
+      {/* CTA Final */}
+      <section className="bg-betapower-darkblue py-20 px-6 text-center">
+        <div className="animate-fade-in-up max-w-2xl mx-auto">
+          <h2 className="text-white text-2xl font-semibold mb-4">
+            Une question sur nos offres ?
+          </h2>
+          <p className="text-white/80 mb-6">
+            Chaque mission est dimensionnée sur mesure. Discutons de votre enjeu lors d'un premier échange de 30 minutes, sans engagement.
+          </p>
+          <Link href="/contact/" className="btn-primary inline-block">
+            Contactez nous pour un premier échange
+          </Link>
+        </div>
+      </section>
     </>
   )
 }
