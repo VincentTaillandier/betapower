@@ -18,7 +18,7 @@ function OffreCard({ offre, index }: OffreCardProps) {
     >
       <Link
         href={`/offres/${offre.id}`}
-        className="bg-white rounded-lg p-6 border border-gray-200 hover:border-betapower-azure hover:shadow-lg transition-all group h-full flex flex-col"
+        className="bg-white rounded-lg p-6 border border-gray-200 hover:shadow-[inset_4px_0_0_#D97706,0_4px_16px_rgba(0,0,0,0.08)] transition-all duration-200 group h-full flex flex-col"
       >
         {offre.badge && (
           <span className="bg-betapower-gold text-white text-xs font-bold px-3 py-1 rounded-full self-start mb-3">
@@ -28,7 +28,7 @@ function OffreCard({ offre, index }: OffreCardProps) {
         <h3 className="text-lg font-bold text-gray-900 mb-3 group-hover:text-betapower-darkblue">
           {offre.title}
         </h3>
-        <p className="text-sm text-gray-600 mb-4 flex-1 leading-relaxed">
+        <p className="text-base text-gray-600 mb-4 flex-1 leading-relaxed">
           {offre.versionCourte}
         </p>
         <span className="text-sm font-medium text-betapower-azure group-hover:underline">
