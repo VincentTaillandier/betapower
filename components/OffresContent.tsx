@@ -46,7 +46,6 @@ interface PillarSectionProps {
 
 function PillarSection({ pillar, pillarKey }: PillarSectionProps) {
   const Icon = pillar.icon
-  const gridCols = pillarKey === 'digitaliser' ? 'md:grid-cols-2' : 'md:grid-cols-2 lg:grid-cols-3'
 
   return (
     <section id={pillarKey} className="mb-20 scroll-mt-20">
@@ -60,7 +59,7 @@ function PillarSection({ pillar, pillarKey }: PillarSectionProps) {
         </p>
       </div>
 
-      <div className={`grid grid-cols-1 ${gridCols} gap-6`}>
+      <div className="grid grid-cols-1 gap-6">
         {pillar.offres.map((offre, idx) => (
           <OffreCard key={offre.id} offre={offre} index={idx} />
         ))}
