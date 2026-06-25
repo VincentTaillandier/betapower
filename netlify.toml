@@ -32,3 +32,39 @@
   to = "https://betapower.fr/:splat"
   status = 301
   force = true
+
+# Redirections permanentes — anciennes pages d'offres vers les nouvelles (8→5)
+[[redirects]]
+  from = "/offres/etudes-reseau/"
+  to = "/offres/etudes-analyses-reseau/"
+  status = 301
+
+[[redirects]]
+  from = "/offres/conseil-operationnel/"
+  to = "/offres/exploitation-procedures-audit/"
+  status = 301
+
+[[redirects]]
+  from = "/offres/audit-exploitation/"
+  to = "/offres/exploitation-procedures-audit/"
+  status = 301
+
+[[redirects]]
+  from = "/offres/formation-operateurs/"
+  to = "/offres/formation-simulateurs/"
+  status = 301
+
+[[redirects]]
+  from = "/offres/ots-ingenierie-scenarios/"
+  to = "/offres/formation-simulateurs/"
+  status = 301
+
+[[redirects]]
+  from = "/offres/donnees-cgmes-automatisation/"
+  to = "/offres/etudes-analyses-reseau/"
+  status = 301
+
+[[redirects]]
+  from = "/offres/due-diligence/"
+  to = "/offres/appui-investisseurs-bailleurs/"
+  status = 301

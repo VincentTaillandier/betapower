@@ -53,17 +53,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ]
 
-  const offerPages: MetadataRoute.Sitemap = []
-  Object.values(offresData).forEach((pillar) => {
-    pillar.offres.forEach((offre: { id: string }) => {
-      offerPages.push({
-        url: `${SITE_URL}/offres/${offre.id}/`,
-        lastModified: offresLastModified,
-        changeFrequency: 'monthly',
-        priority: 0.8,
-      })
-    })
-  })
+  const offerPages: MetadataRoute.Sitemap = [
+    ...offresData.domaines,
+    offresData.secondaire,
+  ].map((offre) => ({
+    url: `${SITE_URL}/offres/${offre.id}/`,
+    lastModified: offresLastModified,
+    changeFrequency: 'monthly' as const,
+    priority: 0.8,
+  }))
 
   const projectPages: MetadataRoute.Sitemap = getProjects().map((project) => ({
     url: `${SITE_URL}/projets/${project.slug}/`,

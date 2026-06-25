@@ -2,20 +2,18 @@
 slug: "migration-scenarios-formation"
 title: "Migration de scénarios de formation"
 description: "Migration et création de 100 scénarios de formation sur un nouveau simulateur de conduite, pour l'entraînement des opérateurs d'un gestionnaire de réseau de transport."
-client: "Rte international"
+client: "Gestionnaire de réseau de transport européen"
 date: "2025"
 skills: ["Python", "CIM/CGMES", "Automatisation", "Formation"]
 contexteSummary: "Création et migration de 100 scénarios de formation sur simulateur OTS pour entraîner les dispatchers d'un gestionnaire de réseau."
 offresLiees:
-  - offreId: "ots-ingenierie-scenarios"
-    label: "Voir l'offre « Simulateurs de conduite (OTS) »"
-  - offreId: "formation-operateurs"
-    label: "Voir l'offre « Formation des opérateurs »"
+  - offreId: "formation-simulateurs"
+    label: "Voir l'offre « Formation & simulateurs »"
 ---
 
 ## Contexte
 
-Un grand gestionnaire de réseau de transport européen renouvelle le simulateur de conduite utilisé pour l'entraînement de ses dispatchers. Ce simulateur — un Operator Training System (OTS) — reproduit l'environnement temps réel d'un centre de conduite : écrans de supervision, alarmes, manœuvres sur le réseau. Il met les opérateurs en situation sur des incidents, des régimes dégradés et des scénarios de reconstitution après blackout. Mandatée par RTE International, BetaPower prend en charge la migration et la création des scénarios de formation.
+Un grand gestionnaire de réseau de transport européen renouvelle le simulateur de conduite utilisé pour l'entraînement de ses dispatchers. Ce simulateur — un Operator Training System (OTS) — reproduit l'environnement temps réel d'un centre de conduite : écrans de supervision, alarmes, manœuvres sur le réseau. Il met les opérateurs en situation sur des incidents, des régimes dégradés et des scénarios de reconstitution après blackout. Dans le cadre d'une mission confiée par un ingénieriste international du secteur électrique, BetaPower prend en charge la migration et la création des scénarios de formation.
 
 ## Enjeux
 
@@ -24,7 +22,7 @@ Un grand gestionnaire de réseau de transport européen renouvelle le simulateur
 - Qualité et cohérence des données réseau : un scénario n'a de valeur que si la physique du réseau simulé est réaliste (calculs de répartition, tensions, stabilité).
 - Documentation et maintenabilité : les scénarios doivent pouvoir être rejoués, adaptés et enrichis par les équipes internes dans la durée.
 
-## Notre intervention
+## Intervention
 
 - **Transfert et réimplémentation** : reprise des scénarios existants depuis l'ancien simulateur vers le nouveau, avec adaptation aux nouvelles interfaces et au nouveau moteur de calcul.
 - **Création de scénarios nouveaux** : blackout généralisé sur plusieurs régions, reconstitution progressive du réseau, incidents en cascade, défaillances d'interconnexions.

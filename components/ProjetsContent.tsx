@@ -41,7 +41,7 @@ export default function ProjetsContent({ projects }: ProjetsContentProps) {
     <>
       <PageHero
         title="Projets & Réalisations"
-        subtitle="Des missions concrètes, des résultats mesurables."
+        subtitle="Des missions concrètes, livrées en conditions réelles."
       />
 
       {/* ── TIMELINE ─────────────────────────────────────────── */}

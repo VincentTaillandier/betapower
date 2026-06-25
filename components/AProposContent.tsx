@@ -1,15 +1,14 @@
 'use client'
 
 import Link from 'next/link'
-import { expertises, valeurs } from '@/lib/apropos'
+import { valeurs } from '@/lib/apropos'
 import PageHero from '@/components/PageHero'
 
 export default function AProposContent() {
   return (
     <>
       <PageHero
-        title="À propos de BetaPower"
-        subtitle="Un cabinet fondé par un ingénieur de terrain"
+        title="Un cabinet fondé par un ancien dispatcher de réseau de transport"
       />
 
       {/* ── FONDATEUR ────────────────────────────────────────── */}
@@ -20,22 +19,13 @@ export default function AProposContent() {
             style={{ fontSize: '1rem', lineHeight: 1.8, fontFamily: 'var(--font-inter, sans-serif)' }}
           >
             <p>
-              BetaPower est née d'un constat simple : les projets d'infrastructure réseau les plus complexes
-              manquent rarement de ressources — ils manquent d'expertise pointue, disponible au bon moment.
-              J'ai créé ce cabinet pour combler cet écart, en apportant une compétence technique de haut niveau
-              directement là où elle crée de la valeur.
+              BetaPower est née d'un constat simple : les projets d'infrastructure réseau les plus complexes manquent rarement de moyens — ils manquent d'une expertise pointue, disponible au bon moment. J'ai créé ce cabinet pour combler cet écart : apporter une compétence technique de haut niveau, directement là où elle crée de la valeur.
             </p>
             <p>
-              Avec sept ans d'expérience sur les réseaux HTB/HTA, j'ai contribué à des projets réglementés
-              d'envergure nationale et internationale, notamment auprès de RTE. J'ai travaillé sur
-              l'intégration d'énergies renouvelables, le déploiement de simulateurs OTS pour la formation
-              des opérateurs réseau, et la conduite de projets soumis aux contraintes les plus exigeantes
-              du secteur de l'énergie.
+              Je m'appelle Vincent Taillandier. J'ai débuté au pupitre d'un réseau de transport très haute tension, comme dispatcher chez RTE : conduite en temps réel, gestion des congestions et des incidents, reprise de service — du régime normal aux situations les plus dégradées. J'ai ensuite piloté, au sein d'un ingénieriste international du secteur électrique, des projets pour des gestionnaires de réseau de transport : codes de réseau, études, calcul de capacité, formation des opérateurs. Depuis 2020, le fil est le même — faire fonctionner des réseaux électriques dans les contextes les plus exigeants — et c'est ce que je poursuis aujourd'hui avec BetaPower.
             </p>
             <p>
-              Ma conviction profonde : un réseau électrique qui fonctionne bien, c'est une infrastructure
-              qui a été pensée par des gens qui comprennent à la fois la physique du système, les contraintes
-              réglementaires et les réalités du terrain. C'est ce regard croisé que j'apporte à chaque mission.
+              Ma conviction : un réseau qui fonctionne bien est une infrastructure pensée par des gens qui maîtrisent à la fois la physique du système, les contraintes réglementaires et les réalités du terrain. À ce triptyque j'ajoute une compétence rarement réunie avec les autres : l'ingénierie des données qui sous-tend l'exploitation moderne — modèles CGMES, automatisation, calculs reproductibles. C'est ce croisement, entre le métier de la conduite et la maîtrise de la donnée, que j'apporte à chaque mission — au service des gestionnaires de réseau de transport et des centres de coordination.
             </p>
           </div>
         </div>
@@ -70,29 +60,19 @@ export default function AProposContent() {
         </div>
       </section>
 
-      {/* ── EXPERTISE ────────────────────────────────────────── */}
+      {/* ── EXPÉRIENCE INTERNATIONALE ────────────────────────── */}
       <section className="bg-white py-24 px-6">
         <div className="max-w-6xl mx-auto">
-          <div className="mb-14">
-            <h2 className="text-gray-900 mb-3">Mes domaines d'expertise</h2>
+          <div className="mb-10">
+            <h2 className="text-gray-900">Une expérience internationale</h2>
           </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-            {expertises.map(({ icon: Icon, title, desc }, idx) => (
-              <div
-                key={title}
-                className="card flex gap-5 items-start animate-fade-in-up"
-                style={{ animationDelay: `${idx * 120}ms` }}
-              >
-                <div className="text-betapower-azure shrink-0 mt-1">
-                  <Icon size={28} />
-                </div>
-                <div>
-                  <h3 className="text-gray-900 mb-2" style={{ fontSize: '1.05rem', fontWeight: 600 }}>{title}</h3>
-                  <p className="text-gray-500 text-sm leading-relaxed">{desc}</p>
-                </div>
-              </div>
-            ))}
+          <div
+            className="max-w-3xl animate-fade-in-up text-gray-600 leading-relaxed"
+            style={{ fontSize: '1rem', lineHeight: 1.8, fontFamily: 'var(--font-inter, sans-serif)' }}
+          >
+            <p>
+              Mon parcours s'étend bien au-delà du réseau européen : j'ai contribué à des projets de réseau de transport dans de nombreux pays — Europe, Afrique, Asie centrale, Moyen-Orient, Pacifique — souvent pour le compte d'ingénieristes du secteur, de bailleurs de fonds et d'institutions internationales : audits d'exploitation, formation de dispatchers, analyse de codes de réseau, due diligence de projets. Des grands réseaux interconnectés aux réseaux insulaires, cette diversité nourrit une lecture comparée des pratiques d'exploitation.
+            </p>
           </div>
         </div>
       </section>
@@ -106,7 +86,14 @@ export default function AProposContent() {
           <Link href="/contact/" className="btn-primary">
             Prendre contact
           </Link>
-          <div className="mt-6">
+          <div className="mt-6 flex flex-col items-center gap-3">
+            <Link
+              href="/offres/"
+              className="text-white/60 text-sm hover:text-white/80 transition-colors"
+              style={{ fontFamily: 'var(--font-inter, sans-serif)' }}
+            >
+              Découvrir les offres →
+            </Link>
             <a
               href="https://www.linkedin.com/in/vincent-taillandier-15574a150/"
               target="_blank"

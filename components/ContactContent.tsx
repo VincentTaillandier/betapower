@@ -16,9 +16,9 @@ declare global {
 
 // Single source of truth — derived from offresData at module load time
 const offreOptions = [
-  ...offresData.operer.offres,
-  ...offresData.former.offres,
-  ...offresData.digitaliser.offres,
+  ...offresData.domaines,
+  offresData.secondaire,
+  { id: 'autre', title: 'Autre besoin' },
 ].map(o => ({ value: o.id, label: o.title }))
 
 type FormState = 'idle' | 'submitting' | 'success' | 'error'
@@ -169,7 +169,7 @@ export default function ContactContent() {
             </svg>
           </div>
           <h1 className="text-2xl font-bold text-gray-900 mb-2">Message envoyé</h1>
-          <p className="text-gray-500 mb-1">Merci pour votre message. Nous vous répondrons sous 48h.</p>
+          <p className="text-gray-500 mb-1">Merci pour votre message. BetaPower vous répondra sous 48&nbsp;h.</p>
           <p className="text-sm text-gray-400">Un accusé de réception a été envoyé à {submittedEmail}.</p>
         </div>
       </div>
@@ -180,7 +180,7 @@ export default function ContactContent() {
 
   return (
     <>
-      <PageHero title="Contact" subtitle="Décrivez-nous votre besoin, nous vous répondons sous 48h." />
+      <PageHero title="Contact" subtitle="Décrivez votre besoin — BetaPower vous répond sous 48&nbsp;h." />
       <div className="max-w-2xl mx-auto px-4 sm:px-6 py-24">
       <form
         onSubmit={handleSubmit}

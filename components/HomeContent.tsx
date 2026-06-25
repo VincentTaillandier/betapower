@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { proofPoints, pillars } from '@/lib/home'
+import { proofPoints, pillars, pillarSecondaire } from '@/lib/home'
 
 export default function HomeContent() {
   return (
@@ -16,22 +16,18 @@ export default function HomeContent() {
         <div className="relative z-10 flex-1 flex items-center">
           <div className="max-w-6xl mx-auto w-full px-6 lg:px-16 py-20">
 
-            <p className="animate-fade-in-up text-white/70 text-base font-medium mb-6">
-              L'expertise de l'exploitation du réseau électrique au service des acteurs du secteur
-            </p>
-
             <h1
               className="text-white max-w-3xl mb-7"
               style={{ fontSize: 'clamp(2.25rem, 4.5vw, 3.75rem)', lineHeight: 1.12 }}
             >
-              Expertise en exploitation des réseaux électriques
+              L'exploitation des réseaux électriques, vue depuis la salle de conduite.
             </h1>
 
             <p
               className="animate-fade-in-up text-white/70 max-w-2xl mb-10"
               style={{ fontSize: '1.125rem', lineHeight: 1.75, animationDelay: '120ms' }}
             >
-              Études de réseau, formation des opérateurs, simulateurs de conduite, codes de réseau ENTSO-E, automatisation CGMES : BetaPower apporte aux acteurs du système électrique une expertise forgée en salle de conduite et éprouvée dans plus de dix pays.
+              BetaPower met une expertise rare de l'exploitation — forgée au pupitre d'un réseau THT — au service des gestionnaires de réseau de transport et des centres de coordination, à l'instant où vos projets en ont besoin. Études de réseau, formation des opérateurs, simulateurs OTS, codes de réseau, automatisation des données.
             </p>
 
             <div
@@ -39,7 +35,7 @@ export default function HomeContent() {
               style={{ animationDelay: '240ms' }}
             >
               <Link
-                href="/offres"
+                href="/offres/"
                 className="btn-primary"
               >
                 Découvrir les offres →
@@ -49,13 +45,13 @@ export default function HomeContent() {
           </div>
         </div>
 
-        {/* Bandeau de preuves (4 items) */}
+        {/* Bandeau de réassurance (3 items) */}
         <div
           className="animate-fade-in-up relative z-10 bg-betapower-darkblue/80 backdrop-blur-sm border-t border-white/10"
           style={{ animationDelay: '380ms' }}
         >
           <div className="max-w-6xl mx-auto px-6 lg:px-16 py-8">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
               {proofPoints.map((point, idx) => (
                 <div key={idx} className="text-center sm:text-left">
                   <p className="text-white/85 text-sm leading-relaxed">
@@ -68,17 +64,17 @@ export default function HomeContent() {
         </div>
       </section>
 
-      {/* ── TROIS PILIERS (cliquables) ────────────────────────── */}
+      {/* ── QUATRE DOMAINES + OFFRE SECONDAIRE ───────────────── */}
       <section className="bg-betapower-bg py-24 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="animate-fade-in-up mb-12 text-center">
-            <h2 className="text-gray-900 mb-3">Nos domaines d'expertise</h2>
+            <h2 className="text-gray-900 mb-3">Une expertise, quatre façons d'intervenir.</h2>
             <p className="text-gray-500 text-lg" style={{ fontFamily: 'var(--font-inter, sans-serif)' }}>
-              Un accompagnement sur mesure pour vos enjeux réseau.
+              Un accompagnement sur mesure pour vos enjeux d'exploitation.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {pillars.map((pillar, pillarIdx) => {
               const Icon = pillar.icon
               return (
@@ -113,6 +109,55 @@ export default function HomeContent() {
               )
             })}
           </div>
+
+          {/* Offre secondaire — visuellement séparée */}
+          <div className="mt-10 pt-10 border-t border-gray-200 flex justify-center animate-fade-in-up" style={{ animationDelay: '600ms' }}>
+            <div className="w-full max-w-sm">
+              {(() => {
+                const Icon = pillarSecondaire.icon
+                return (
+                  <Link
+                    href={pillarSecondaire.href}
+                    className="bg-white rounded-lg p-6 border border-gray-200 hover:shadow-[inset_4px_0_0_#D97706,0_4px_16px_rgba(0,0,0,0.08)] transition-all duration-200 group flex flex-col"
+                  >
+                    <div className="text-betapower-azure mb-4">
+                      <Icon size={28} />
+                    </div>
+                    <h3 className="font-bold text-gray-900 mb-2 group-hover:text-betapower-darkblue text-lg leading-snug">
+                      {pillarSecondaire.title}
+                    </h3>
+                    <ul className="flex-1 space-y-1">
+                      {pillarSecondaire.description.map((item, i) => (
+                        <li key={i} className="flex items-baseline gap-2 text-sm text-gray-600 leading-snug">
+                          <span className="text-betapower-azure shrink-0">·</span>
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                    <p className="text-xs text-gray-400 mt-3">Pour les porteurs de projet, investisseurs et bailleurs</p>
+                    <span className="text-sm font-medium text-betapower-azure group-hover:underline mt-3 inline-block">
+                      En savoir plus →
+                    </span>
+                  </Link>
+                )
+              })()}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── CTA DE CLÔTURE ───────────────────────────────────── */}
+      <section className="bg-betapower-darkblue py-20 px-6 text-center">
+        <div className="animate-fade-in-up max-w-2xl mx-auto">
+          <h2 className="text-white text-2xl font-semibold mb-4">
+            Un enjeu d'exploitation à challenger ?
+          </h2>
+          <p className="text-white/80 mb-6">
+            Décrivez votre besoin : BetaPower vous répond sous 48&nbsp;h pour un premier échange de 30&nbsp;minutes, sans engagement.
+          </p>
+          <Link href="/contact/" className="btn-primary inline-block">
+            Prendre contact
+          </Link>
         </div>
       </section>
 

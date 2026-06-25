@@ -5,15 +5,15 @@ import { canonical, SITE_NAME, DEFAULT_OG_IMAGE } from '@/lib/seo'
 
 export const metadata: Metadata = {
   title: {
-    absolute: `Références ${SITE_NAME} — Simulateur OTS RTE, calcul de capacité RCC, codes de réseau, formations internationales`,
+    absolute: `Projets & réalisations — ${SITE_NAME} | Déploiement de simulateurs OTS et ingénierie de scénarios de formation`,
   },
   description:
-    "Projets de référence : scénarios de formation sur le simulateur de conduite de RTE, analyse d'un calcul de capacité pour un RCC européen, due diligence hydroélectrique, codes de réseau et formations dans plus de 10 pays.",
+    "Projets de référence en exploitation de réseaux électriques : déploiement de simulateur OTS, migration et création de scénarios de formation, ingénierie des données réseau.",
   alternates: { canonical: canonical('/projets') },
   openGraph: {
-    title: `Références ${SITE_NAME} — Projets réseau électrique et formations internationales`,
+    title: `Projets & réalisations — ${SITE_NAME}`,
     description:
-      "Projets de référence en exploitation de réseaux électriques : simulateur OTS RTE, calcul de capacité RCC européen, due diligence hydroélectrique, formations dans plus de 10 pays.",
+      "Projets de référence en exploitation de réseaux électriques : déploiement de simulateur OTS, migration et création de scénarios de formation, ingénierie des données réseau.",
     url: canonical('/projets'),
     images: [{ url: DEFAULT_OG_IMAGE, alt: SITE_NAME }],
   },

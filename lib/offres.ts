@@ -1,309 +1,153 @@
-import { IconType } from 'react-icons'
-import { PiEngine, PiChalkboardTeacher, PiCpu } from 'react-icons/pi'
-
 export interface VersionDetaillee {
   titre: string
   sousTitre: string
-  contexte?: string
-  objectif?: string
-  ceQueNousFaisons?: string[]
-  expertiseApportee?: string[]
-  domainesCouverts?: string
-  secteursConcernes?: string
-  formats?: string[]
-  themes?: string[]
-  publicsCibles?: string
-  derouleType?: string[]
-  livrablesTypes?: string | string[]
-  plusValueClient?: string
-  beneficesClient?: string[]
-  resultatsAttendus?: string[]
-  casDusage?: string[]
-  exempleMissions?: string[]
-  references?: string[]
+  audienceNote?: string
+  enBref: string
+  ceQueCouvreOffre: string[]
+  livrablesTypes: string
+  exemplesMissions: string[]
 }
 
 export interface Offre {
   id: string
   title: string
-  badge?: string
+  eyebrow: string
   versionCourte: string
   versionDetaillee: VersionDetaillee
 }
 
-export interface Pillar {
-  pillarTitle: string
-  pillarDescription: string[]
-  icon: IconType
-  offres: Offre[]
-}
-
 export interface OffresData {
-  operer: Pillar
-  former: Pillar
-  digitaliser: Pillar
+  domaines: Offre[]
+  secondaire: Offre
 }
 
-// Descriptions des piliers — source unique partagée avec la home (string[] pour bullet list)
-export const pillarDescriptions = {
-  operer: [
-    "Études de réseau",
-    "Procédures opérationnelles",
-    "Appui aux centres de conduite",
-    "Audits d'exploitation",
-  ],
-  former: [
-    "Formation en salle et sur simulateur",
-    "Situations normales et dégradées",
-    "Reconstitution du réseau",
-    "Codes de réseau",
-  ],
-  digitaliser: [
-    "Configuration d'outils",
-    "Automatisation de processus",
-    "Modélisation CIM/CGMES",
-    "Gestion des bases de données",
-  ],
-}
-
-// Structure complète des 8 offres avec contenu court ET détaillé
 export const offresData: OffresData = {
-  operer: {
-    pillarTitle: "Opérer.",
-    pillarDescription: pillarDescriptions.operer,
-    icon: PiEngine,
-    offres: [
-      {
-        id: "etudes-reseau",
-        title: "Études de réseau",
-        versionCourte: "Calculs de répartition, courts-circuits, plans de tension, stabilité, analyse de sécurité et calcul de capacité.",
-        versionDetaillee: {
-          titre: "Études de réseau et analyses de sécurité",
-          sousTitre: "Des études opérationnelles, reproductibles, fondées sur des modèles de réseau de qualité.",
-          ceQueNousFaisons: [
-            "Construction et fiabilisation du modèle de réseau (lignes, transformateurs, groupes, BESS) au format CIM/CGMES.",
-            "Calculs de répartition (load flow) et analyses de sécurité N-1 / contingences.",
-            "Études de tension (plans de tension, réglage, comportement en faible charge / forte pénétration PV).",
-            "Calculs de court-circuit, vérification des tenues matérielles.",
-            "Études de stabilité statique et dynamique de premier niveau (études dynamiques lourdes avec experts partenaires).",
-            "Calcul de capacité d'échange transfrontalier et analyse des processus de capacité (NTC, flow-based).",
-            "Études d'intégration : raccordement de production, EnR, stockage ; impact sur l'exploitation.",
-          ],
-          domainesCouverts: "Réseaux de transport HTB/THT · réseaux de distribution HTA · réseaux insulaires et isolés · interconnexions et échanges transfrontaliers · réseaux industriels raccordés au transport.",
-          livrablesTypes: [
-            "Rapport d'étude argumenté (hypothèses, scénarios, résultats, recommandations)",
-            "Modèles CGMES livrés et documentés",
-            "Scripts d'automatisation livrés (Python) lorsque l'étude a vocation à être rejouée",
-            "Restitution orale aux équipes techniques et à la direction",
-          ],
-          casDusage: [
-            "Un centre de coordination régional européen veut objectiver les causes d'écarts entre capacités calculées et réalité du temps réel sur sa zone.",
-            "Un gouvernement évalue la capacité d'un projet hydroélectrique de plusieurs gigawatts à évacuer et exporter sa production.",
-            "Un opérateur insulaire fait face à des problèmes de tension en creux de charge avec forte pénétration photovoltaïque.",
-            "Un GRT prépare des arrêts critiques d'ouvrages (interconnexions, centrales) et doit en valider la faisabilité.",
-          ],
-        },
+  domaines: [
+    {
+      id: "etudes-analyses-reseau",
+      title: "Études & analyses de réseau",
+      eyebrow: "OFFRE",
+      versionCourte: "Load flow, sécurité N-1, calcul de capacité, stabilité — sur modèles CGMES, automatisées et reproductibles.",
+      versionDetaillee: {
+        titre: "Études & analyses de réseau",
+        sousTitre: "Des études opérationnelles, reproductibles, fondées sur des modèles de réseau de qualité.",
+        enBref: "Les processus européens — calcul de capacité coordonné, analyse de sécurité, échange de modèles CGMES — et la multiplication des analyses rendent les approches manuelles intenables. BetaPower industrialise les études sur des modèles fiabilisés : automatisation Python, chaînes reproductibles et auditables, avec la lecture métier d'un ancien exploitant. Rares sont les profils qui maîtrisent à la fois le métier — qu'est-ce qu'un load flow plausible ? — et la donnée. Cadre de départ, mission dimensionnée au cadrage.",
+        ceQueCouvreOffre: [
+          "Construction, fiabilisation et contrôle qualité du modèle de réseau (lignes, transformateurs, groupes, BESS) au format CIM/CGMES.",
+          "Calculs de répartition (load flow) et analyses de sécurité N-1 / contingences.",
+          "Calcul de capacité d'échange transfrontalier (NTC, flow-based) et analyse des processus de capacité.",
+          "Études de tension, court-circuit et stabilité de premier niveau (dynamique lourde avec experts partenaires).",
+          "Études d'intégration : raccordement de production, EnR et stockage, impact sur l'exploitation.",
+          "Automatisation Python des études et des analyses a posteriori, bases de données de situations et de résultats, tableaux de bord — chaînes rejouables, extraction automatisée depuis les outils d'études.",
+        ],
+        livrablesTypes: "rapport d'étude argumenté · modèles CGMES documentés et validés · scripts et pipelines Python livrés (le client reste propriétaire et autonome) · base de données structurée et tableaux de bord · restitution aux équipes et à la direction.",
+        exemplesMissions: [
+          "Un centre de coordination régional européen objective statistiquement les écarts entre capacités calculées et réalité temps réel sur sa zone (analyses, qualité des modèles CGMES).",
+          "Un GRT prépare des arrêts critiques d'ouvrages (interconnexions, centrales) et doit en valider la faisabilité.",
+          "Un opérateur confronté à des problèmes de tension en faible charge avec forte pénétration photovoltaïque.",
+          "Une équipe d'études passe d'études manuelles ponctuelles à des chaînes rejouables et auditables.",
+        ],
       },
-      {
-        id: "conseil-operationnel",
-        title: "Conseil opérationnel",
-        versionCourte: "Rédaction et harmonisation de procédures opérationnelles, préparation des essais de mise en service, optimisation de schémas d'exploitation.",
-        versionDetaillee: {
-          titre: "Conseil opérationnel",
-          sousTitre: "L'expérience de la salle de conduite, mise au service de vos procédures et de vos équipes.",
-          contexte: "Les centres de conduite font face à une complexité croissante : intégration massive d'EnR et de stockage, exigences réglementaires, renouvellement des équipes, multiplication des mises en service. Les procédures opérationnelles sont l'ossature de la sûreté du système — elles doivent être justes, à jour, harmonisées et appropriées par les opérateurs.",
-          expertiseApportee: [
-            "Rédaction, refonte et harmonisation de procédures et consignes opérationnelles (normal, dégradé, reprise de service).",
-            "Préparation, rédaction et validation des séquences d'essais de mise en service d'ouvrages HT neufs ou rénovés.",
-            "Optimisation des schémas d'exploitation (pertes techniques, contraintes, qualité d'alimentation).",
-            "Appui à la supervision des actifs critiques (contrôle-commande, télécoms, comptage) en lien avec l'exploitation.",
-            "Revue technique d'accords d'accès au réseau.",
-          ],
-          plusValueClient: "Des procédures écrites par quelqu'un qui les a appliquées en temps réel — donc réalistes, manœuvrables et acceptées par les opérateurs. Un regard extérieur structuré, sans les angles morts internes.",
-          exempleMissions: [
-            "Rédaction et déploiement d'une procédure nationale harmonisée de remise en tension automatique après coupure, intégrant stabilité, tension et contraintes des groupes.",
-            "Rédaction et validation des procédures d'essais de mise en service d'installations HT.",
-            "Méthodologie de réduction des pertes techniques : ~15 GWh économisés par an sur une région.",
-            "Document opérationnel unique de supervision des liaisons de télécommunication d'interconnexions transfrontalières.",
-            "Rédaction d'un accord de réseau de transport pour une centrale hydroélectrique au fil de l'eau de 250 MW.",
-          ],
-        },
+    },
+    {
+      id: "exploitation-procedures-audit",
+      title: "Exploitation, procédures & audit",
+      eyebrow: "OFFRE",
+      versionCourte: "Procédures de conduite, schémas d'exploitation, audit de maturité.",
+      versionDetaillee: {
+        titre: "Exploitation, procédures & audit",
+        sousTitre: "L'expérience de la salle de conduite, au service de vos procédures, de vos équipes et de votre résilience.",
+        enBref: "Les procédures opérationnelles sont l'ossature de la sûreté du système : justes, à jour, appropriées par les opérateurs. BetaPower les rédige, optimise les schémas d'exploitation, et audite la maturité de l'exploitation — avec le regard de quelqu'un qui a conduit le réseau en temps réel. Des procédures réalistes et manœuvrables ; un diagnostic factuel, opposable en interne et au régulateur. Chaque mission est un cadre de départ, dimensionnée au cadrage.",
+        ceQueCouvreOffre: [
+          "Rédaction, refonte et harmonisation de procédures et consignes (normal, dégradé, reprise de service).",
+          "Préparation et validation des séquences d'essais de mise en service d'ouvrages HT.",
+          "Optimisation des schémas d'exploitation (pertes techniques, contraintes, qualité d'alimentation).",
+          "Audit de l'exploitation : organisation du centre de conduite, plans de défense et de reconstitution, conformité aux référentiels, entraînement des équipes — restitué en grille de maturité.",
+          "Appui à la supervision des actifs critiques (contrôle-commande, télécoms, comptage).",
+          "Automatisation des analyses a posteriori (retours d'expérience, incidents) et tableaux de bord d'exploitation — scripts Python livrés, équipes autonomes.",
+        ],
+        livrablesTypes: "procédures et consignes livrées · rapport d'audit avec grille de maturité · recommandations hiérarchisées (quick wins / structurel) et plan d'action · scripts d'analyse et tableaux de bord livrés · restitution à la direction.",
+        exemplesMissions: [
+          "Procédure nationale harmonisée de remise en tension automatique après coupure, intégrant stabilité, tension et contraintes de groupes.",
+          "Méthodologie de réduction des pertes techniques : ~15 GWh économisés par an sur une région.",
+          "Audit de la gestion des situations d'urgence et du plan de reconstitution d'un centre de conduite.",
+          "Analyse d'écarts des politiques opérationnelles ENTSO-E pour un GRT en cours de synchronisation avec le réseau continental européen.",
+        ],
       },
-      {
-        id: "audit-exploitation",
-        title: "Audit de l'exploitation",
-        versionCourte: "Audit des règles de conduite, des procédures opérationnelles et de l'organisation du centre de contrôle. Évaluation des plans de défense et de reconstitution du réseau.",
-        versionDetaillee: {
-          titre: "Audit de l'exploitation",
-          sousTitre: "Un diagnostic indépendant de vos pratiques de conduite et de votre résilience opérationnelle.",
-          objectif: "Donner à la direction technique une vision objective de la maturité de son exploitation : organisation du centre de conduite, qualité et couverture des procédures, gestion des situations d'urgence (plan de défense, reconstitution), conformité aux référentiels (codes ENTSO-E, bonnes pratiques GRT), compétences et entraînement des équipes.",
-          derouleType: [
-            "**Cadrage** : périmètre, référentiels applicables, accès documentaire.",
-            "**Analyse documentaire** : procédures, consignes, organisation, retours d'expérience d'incidents.",
-            "**Immersion terrain** : observation en centre de conduite, entretiens opérateurs et encadrement.",
-            "**Évaluation** : grille de maturité par domaine (surveillance, congestions, urgence, reconstitution, formation, outils).",
-            "**Restitution** : rapport de constats, recommandations hiérarchisées (quick wins / structurel), plan d'action, présentation à la direction.",
-          ],
-          secteursConcernes: "GRT et GRD · opérateurs de réseaux insulaires · grands sites industriels disposant d'un poste de conduite · producteurs · institutions et bailleurs (évaluation de GRT bénéficiaires).",
-          beneficesClient: [
-            "Vision factuelle et hiérarchisée des écarts, opposable en interne et vis-à-vis du régulateur.",
-            "Réduction du risque d'incident majeur et amélioration du temps de rétablissement.",
-            "Feuille de route exploitable immédiatement, dimensionnée aux moyens réels du client.",
-            "Mise en conformité progressive avec les exigences européennes (SOGL, E&R) ou les codes nationaux.",
-          ],
-          references: [
-            "Audit de la gestion des situations d'urgence du centre de contrôle de l'opérateur national d'un pays d'Afrique de l'Ouest",
-            "Audit des pratiques de régulation de tension du GRT d'un territoire insulaire du Pacifique (filiale de RTE International)",
-            "Analyse d'écarts des politiques opérationnelles ENTSO-E pour le GRT d'un pays d'Europe de l'Est en cours de synchronisation avec le réseau continental européen",
-          ],
-        },
+    },
+    {
+      id: "codes-reseau-conformite",
+      title: "Codes de réseau & conformité ENTSO-E",
+      eyebrow: "OFFRE",
+      versionCourte: "Gap analysis, implémentation des codes, traduction opérationnelle.",
+      versionDetaillee: {
+        titre: "Codes de réseau & conformité ENTSO-E",
+        sousTitre: "Du texte réglementaire à la procédure de conduite.",
+        enBref: "Les cadres évoluent vite : SOGL, Emergency & Restoration, RfG, règlements marchés, synchronisations avec le réseau continental. L'enjeu n'est pas d'être conforme sur le papier, c'est que les exigences se traduisent en pratiques de conduite, procédures, formation et outils. BetaPower fait ce pont, depuis l'applicabilité opérationnelle. Cadre de départ, mission dimensionnée au cadrage.",
+        ceQueCouvreOffre: [
+          "Analyse d'écarts (gap analysis) entre pratiques existantes et exigences ENTSO-E ou codes nationaux.",
+          "Appui à l'implémentation : code d'exploitation, code de raccordement, articulation avec le code de marché.",
+          "Traduction des exigences en procédures, plans de formation et spécifications d'outils.",
+          "Analyse de cadres législatifs, description des processus réglementaires (licences, autorisations) en vue de leur digitalisation.",
+          "Appui aux échanges avec le régulateur et les parties prenantes.",
+        ],
+        livrablesTypes: "rapport de gap analysis · projets de codes et procédures · spécifications fonctionnelles · supports d'échange avec le régulateur.",
+        exemplesMissions: [
+          "Analyse d'écarts ENTSO-E (urgence et reconstitution, sécurité opérationnelle coordonnée, formation) pour un GRT en cours de synchronisation avec le réseau continental européen.",
+          "Rédaction d'un code d'exploitation et formation associée (réglage tension/fréquence) pour un gestionnaire de réseau national.",
+          "Spécification de processus réglementaires pour la plateforme digitale d'un régulateur.",
+        ],
       },
-    ],
-  },
-  former: {
-    pillarTitle: "Former.",
-    pillarDescription: pillarDescriptions.former,
-    icon: PiChalkboardTeacher,
-    offres: [
-      {
-        id: "formation-operateurs",
-        title: "Formation des opérateurs",
-        versionCourte: "Formation des dispatchers et ingénieurs : conduite en situation normale et dégradée, reconstitution du réseau, codes ENTSO-E.",
-        versionDetaillee: {
-          titre: "Formation des opérateurs de réseau et des équipes techniques",
-          sousTitre: "La conduite des réseaux s'apprend avec ceux qui l'ont pratiquée.",
-          formats: [
-            "Sessions intra-entreprise (1 jour à 2 semaines), sur site client ou en France.",
-            "Formation sur simulateur de conduite (OTS/DTS) : scénarios normaux, dégradés, blackout et reconstitution.",
-            "Coaching individuel de dispatchers (sessions courtes ciblées, ex. régulation de tension).",
-            "Parcours sur mesure pour équipes non opérationnelles (ingénierie, régulation, recherche, finance de l'énergie).",
-            "Interventions en français et en anglais ; supports disponibles en espagnol.",
-          ],
-          themes: [
-            "Fondamentaux du système électrique : production, consommation, fréquence, tension, stabilité.",
-            "Conduite de réseau : surveillance, analyse de sécurité N-1, gestion des congestions, manœuvres.",
-            "Régimes dégradés : plan de défense, gestion d'incident, reconstitution après blackout.",
-            "Régulation de tension et de fréquence, y compris avec EnR et stockage (BESS).",
-            "Codes de réseau ENTSO-E (SOGL, Emergency & Restoration, RfG) et leur traduction opérationnelle.",
-            "Marchés de l'électricité : modèles de marché, horizons de temps (long terme → intraday), ordre de mérite, formation des prix, couplage européen.",
-          ],
-          publicsCibles: "Dispatchers et opérateurs de centres de conduite (GRT, GRD, producteurs, grands sites industriels) · ingénieurs d'exploitation et de planification opérationnelle · régulateurs et institutions · équipes de développeurs et d'investisseurs.",
-          resultatsAttendus: [
-            "Opérateurs capables d'appliquer les procédures en situation normale et dégradée, évalués sur scénarios.",
-            "Montée en autonomie mesurable sur les gestes critiques (reprise de service, gestion de tension).",
-            "Compréhension partagée des exigences réglementaires — en Europe, SOGL fait de la formation des opérateurs une obligation, plus une option.",
-            "Supports pédagogiques remis et réutilisables en interne.",
-          ],
-          references: [
-            "Formation de deux semaines des dispatchers de la compagnie nationale d'électricité d'un pays d'Afrique de l'Ouest (équilibrage, échanges transfrontaliers, urgence et reconstitution, sur simulateur DTS)",
-            "Formation de deux semaines « exploitation, régulation et marchés » pour un centre de recherche en énergie au Moyen-Orient",
-            "Formation d'une équipe d'ingénierie d'un acteur international de l'énergie offshore",
-            "Coaching individuel des dispatchers du GRT d'un territoire insulaire du Pacifique (filiale de RTE International)",
-            "Scénarios de formation sur le simulateur de conduite de RTE",
-          ],
-        },
+    },
+    {
+      id: "formation-simulateurs",
+      title: "Formation & simulateurs",
+      eyebrow: "OFFRE",
+      versionCourte: "Opérateurs en salle et sur OTS, ingénierie des scénarios.",
+      versionDetaillee: {
+        titre: "Formation & simulateurs",
+        sousTitre: "La conduite des réseaux s'apprend avec ceux qui l'ont pratiquée — sur un simulateur qui sonne juste.",
+        enBref: "Former les opérateurs aux situations qu'ils ne rencontreront (espérons-le) jamais en réel, voilà l'enjeu. BetaPower conçoit et anime ces formations, et ingénie le simulateur OTS qui les porte : scénarios réalistes, situations de réseau cohérentes, données fiables. Un simulateur ne vaut que par ses scénarios et la qualité de ses données. Cadre de départ, mission dimensionnée au cadrage.",
+        ceQueCouvreOffre: [
+          "Formation des dispatchers et ingénieurs : conduite normale et dégradée, gestion d'incident, reconstitution après blackout, régulation tension/fréquence, marchés de l'électricité.",
+          "Formats : intra-entreprise, sur simulateur (OTS/DTS), coaching individuel, parcours pour équipes non opérationnelles. En français et en anglais, supports en espagnol.",
+          "Paramétrage et configuration de simulateurs OTS, transfert et création de scénarios (incidents, dégradés, blackout, reconstitution).",
+          "Construction des situations de réseau au format CGMES, validées en load flow ; ingénierie des données (extraction automatisée, Python).",
+          "Rédaction des manuels et formation des formateurs internes.",
+        ],
+        livrablesTypes: "programme et supports réutilisables · scénarios OTS documentés et rejouables · situations CGMES validées en load flow · scripts d'alimentation livrés · manuel formateur.",
+        exemplesMissions: [
+          "Migration et création de 100 scénarios de formation lors du renouvellement du simulateur d'un GRT, automatisation Python incluse.",
+          "Formation de deux semaines de dispatchers (équilibrage, échanges transfrontaliers, urgence et reconstitution) sur simulateur.",
+          "Coaching individuel de dispatchers sur la régulation de tension.",
+          "Un GRT industrialise la production de situations de réseau pour la formation, à partir de ses outils d'études (automatisation Python).",
+        ],
       },
-      {
-        id: "codes-reseau-conformite",
-        title: "Codes de réseau",
-        versionCourte: "Analyse d'écarts vis-à-vis des codes ENTSO-E (SOGL, E&R, RfG) et des référentiels nationaux. Traduction des exigences en procédures opérationnelles et appui aux GRT et régulateurs.",
-        versionDetaillee: {
-          titre: "Codes de réseau",
-          sousTitre: "Du texte réglementaire à la procédure de conduite.",
-          contexte: "Les cadres réglementaires évoluent vite : codes européens (SOGL, Emergency & Restoration, RfG, règlements marchés), synchronisations de nouveaux pays avec l'Europe continentale, refonte des lois électricité et codes de réseau dans de nombreux pays. L'enjeu n'est pas d'être conforme sur le papier : c'est que les exigences se traduisent en pratiques de conduite, en procédures, en formation et en outils.",
-          expertiseApportee: [
-            "Analyse d'écarts (gap analysis) entre pratiques existantes et exigences ENTSO-E ou codes nationaux.",
-            "Appui à l'implémentation des codes de réseau : code d'exploitation, code de raccordement, articulation avec le code de marché.",
-            "Traduction des exigences en procédures opérationnelles, plans de formation et spécifications d'outils.",
-            "Analyse de cadres législatifs nationaux ; description de processus réglementaires (licences, autorisations) et spécifications pour leur digitalisation.",
-            "Appui aux échanges avec le régulateur et les parties prenantes.",
-          ],
-          plusValueClient: "Un expert qui a appliqué ces codes en conduite réelle et les a enseignés : l'analyse ne s'arrête pas à la conformité documentaire, elle anticipe l'applicabilité opérationnelle.",
-          exempleMissions: [
-            "Analyse d'écarts vis-à-vis des exigences ENTSO-E (urgence et reconstitution, sécurité opérationnelle coordonnée, formation) pour le GRT d'un pays d'Europe de l'Est en cours de synchronisation avec le réseau continental européen.",
-            "Rédaction du code d'exploitation et formation associée (réglage tension/fréquence) pour la compagnie nationale d'électricité d'un pays d'Afrique de l'Ouest.",
-            "Analyse d'une nouvelle loi électricité et spécification de dix processus réglementaires pour la plateforme digitale d'une agence gouvernementale ouest-africaine.",
-            "Revue du code de réseau d'un État d'Asie centrale et rédaction de clauses techniques de PPA transfrontaliers.",
-          ],
-        },
-      },
-      {
-        id: "due-diligence",
-        title: "Due diligence technique",
-        versionCourte: "Due diligence technique de projets de raccordement (production, consommation et stockage) et d'interconnexion, analyses de l'équilibre offre-demande, clauses techniques de PPA.",
-        versionDetaillee: {
-          titre: "Due diligence technique",
-          sousTitre: "Sécuriser les décisions d'investissement par l'analyse réseau, réglementaire et opérationnelle.",
-          contexte: "Bailleurs, gouvernements, investisseurs et développeurs ont besoin d'évaluations techniques indépendantes : un projet de production peut-il évacuer son énergie ? Les échanges transfrontaliers envisagés sont-ils techniquement et juridiquement réalistes ? Le système SCADA/EMS livré est-il conforme au cahier des charges ?",
-          expertiseApportee: [
-            "Due diligence technique et réglementaire de projets de production et d'export (capacités d'évacuation, renforcements réseau, équilibre offre-demande, tarifs).",
-            "Rédaction et revue de clauses techniques de contrats d'achat d'électricité (PPA), y compris formules d'énergie non fournie / non utilisée.",
-            "Assistance technique à des GRT pour le compte de bailleurs internationaux : évaluation, renforcement de capacités, accompagnement.",
-            "Supervision et évaluation de recettes (SAT) de systèmes SCADA/EMS vis-à-vis du cahier des charges.",
-            "Réponses techniques à appels d'offres et pilotage de lots dans des consortiums internationaux.",
-          ],
-          plusValueClient: "Une analyse qui croise les trois dimensions qui font échouer les projets : le réseau (physique), la réglementation (codes, PPA) et l'exploitation (ce qui se passera réellement en conduite). Habitué des consortiums, des bailleurs et des contextes multi-pays.",
-          exempleMissions: [
-            "Due diligence commerciale, technique et réglementaire des PPA domestiques et export d'un projet hydroélectrique de plusieurs gigawatts, pour le gouvernement d'un État d'Asie centrale — pilotage du lot confié à RTE International.",
-            "Évaluation de la conformité des essais de recette site (SAT) d'un système SCADA/EMS pour le centre de coordination des échanges d'électricité d'Asie centrale, pour le compte d'une banque multilatérale de développement.",
-            "Analyse réglementaire et spécifications d'une plateforme digitale du secteur électrique pour une agence gouvernementale ouest-africaine.",
-          ],
-        },
-      },
-    ],
-  },
-  digitaliser: {
-    pillarTitle: "Digitaliser.",
-    pillarDescription: pillarDescriptions.digitaliser,
-    icon: PiCpu,
-    offres: [
-      {
-        id: "ots-ingenierie-scenarios",
-        title: "Simulateurs de conduite (OTS)",
-        versionCourte: "Paramétrage et configuration de simulateurs OTS, création de scénarios de formation (régime normal, dégradé, blackout, reconstitution) et construction des situations de réseau associées.",
-        versionDetaillee: {
-          titre: "Simulateurs de conduite (OTS)",
-          sousTitre: "Un simulateur ne vaut que par ses scénarios et la qualité de ses données.",
-          contexte: "Les GRT investissent dans des simulateurs de conduite pour répondre aux exigences de formation et préparer leurs équipes aux situations extrêmes. Mais entre la livraison du logiciel et un programme d'entraînement opérationnel, l'essentiel reste à faire : modéliser les situations de réseau, construire des scénarios pédagogiques réalistes, alimenter et maintenir les bases de données.",
-          ceQueNousFaisons: [
-            "Paramétrage et configuration de simulateurs de réseau (expérience sur l'OTS d'un éditeur majeur du marché, pour RTE).",
-            "Transfert de scénarios existants vers un nouveau simulateur.",
-            "Création de scénarios nouveaux : incidents, régimes dégradés, blackout généralisé, reconstitution du réseau.",
-            "Construction des situations de réseau correspondantes (charge, production, topologie) au format CGMES, cohérentes en calcul de répartition.",
-            "Ingénierie des données : alimentation de la base OTS, extraction automatisée de topologies/charges/productions depuis les outils d'études (Python, framework CGMES).",
-            "Rédaction de manuels d'utilisation et formation des formateurs internes.",
-          ],
-          livrablesTypes: "Scénarios opérationnels documentés et rejouables · situations de réseau CGMES validées en load flow · scripts d'extraction et d'alimentation livrés · manuel formateur.",
-          casDusage: [
-            "Un GRT remplace son simulateur et doit migrer puis enrichir son patrimoine de scénarios (référence : RTE, 2025–2026).",
-            "Un GRT veut entraîner ses équipes à la reconstitution après blackout avec des situations réseau réalistes.",
-            "Un centre de formation veut industrialiser la production de scénarios à partir de situations réelles archivées.",
-          ],
-        },
-      },
-      {
-        id: "donnees-cgmes-automatisation",
-        title: "Modélisation réseau",
-        versionCourte: "Modélisation CIM/CGMES, contrôle qualité des modèles, automatisation en Python, peuplement et gestion des bases de données.",
-        versionDetaillee: {
-          titre: "Modélisation réseau",
-          sousTitre: "Industrialiser les études de réseau : modèles fiables, calculs reproductibles, analyses automatisées.",
-          contexte: "Les processus européens (calcul de capacité, échanges de modèles CGMES, analyses coordonnées) et la multiplication des études rendent intenables les approches manuelles. GRT et RCC ont besoin de modèles de qualité, de chaînes de calcul automatisées et d'analyses statistiques sur de grands volumes de situations réseau. Rares sont les profils qui maîtrisent à la fois le métier (qu'est-ce qu'un résultat de load flow plausible ?) et la digitalisation(Python, bases de données, CGMES).",
-          ceQueNousFaisons: [
-            "Modélisation de réseaux au format CIM/CGMES (lignes, transformateurs, groupes, BESS) et contrôle qualité des modèles.",
-            "Automatisation en Python d'études de réseau, de calculs de capacité et d'analyses a posteriori, dans des frameworks CGMES (dont écosystème open source).",
-            "Création et alimentation de bases de données de situations et de résultats ; analyses statistiques ; visualisation.",
-            "Extraction automatisée de topologies, charges et productions depuis les outils d'études des GRT.",
-            "Spécifications techniques à destination d'équipes de développement ; collaboration en mode agile.",
-          ],
-          livrablesTypes: "Scripts et pipelines documentés et livrés (le client reste propriétaire et autonome) · modèles CGMES validés · base de données structurée · rapport d'analyse et tableaux de bord · spécifications techniques.",
-          casDusage: [
-            "Un centre de coordination régional européen veut comprendre statistiquement les dérives d'un processus de calcul de capacité (base de données de résultats, analyses statistiques et financières, qualité des modèles CGMES).",
-            "Un GRT veut générer automatiquement des situations de réseau pour la formation ou les études (référence : RTE).",
-            "Une équipe d'études veut passer d'études manuelles ponctuelles à des chaînes rejouables et auditables.",
-          ],
-        },
-      },
-    ],
+    },
+  ],
+  secondaire: {
+    id: "appui-investisseurs-bailleurs",
+    title: "Appui investisseurs & bailleurs",
+    eyebrow: "OFFRE — INVESTISSEURS & BAILLEURS",
+    versionCourte: "Due diligence, PPA, recette SCADA/EMS.",
+    versionDetaillee: {
+      titre: "Appui investisseurs & bailleurs",
+      audienceNote: "Pour les porteurs de projet, investisseurs, bailleurs et gouvernements — offre distincte de l'accompagnement des gestionnaires de réseau.",
+      sousTitre: "Sécuriser les décisions d'investissement par l'analyse réseau, réglementaire et opérationnelle.",
+      enBref: "Un projet de production peut-il évacuer son énergie ? Les échanges transfrontaliers sont-ils réalistes ? Le système SCADA/EMS livré est-il conforme au cahier des charges ? BetaPower apporte une évaluation indépendante qui croise les trois dimensions qui font échouer les projets : réseau, réglementation, exploitation.",
+      ceQueCouvreOffre: [
+        "Due diligence technique et réglementaire de projets de production et d'export (évacuation, renforcements, équilibre offre-demande, tarifs).",
+        "Rédaction et revue de clauses techniques de PPA (énergie non fournie / non utilisée).",
+        "Assistance technique à des GRT pour le compte de bailleurs internationaux.",
+        "Supervision et évaluation de recettes (SAT) de systèmes SCADA/EMS.",
+        "Réponses techniques à appels d'offres et pilotage de lots en consortium.",
+      ],
+      livrablesTypes: "rapport de due diligence · clauses techniques de PPA · rapports de recette SAT · réponses techniques d'appel d'offres.",
+      exemplesMissions: [
+        "Due diligence technique et réglementaire des PPA (domestiques et export) d'un projet hydroélectrique de plusieurs gigawatts, pour le compte d'un gouvernement.",
+        "Évaluation de la conformité des essais de recette (SAT) d'un système SCADA/EMS, pour le compte d'une banque multilatérale de développement.",
+        "Analyse réglementaire et spécifications d'une plateforme digitale du secteur électrique.",
+      ],
+    },
   },
 }

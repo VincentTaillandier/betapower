@@ -4,15 +4,15 @@ import { canonical, SITE_NAME, DEFAULT_OG_IMAGE } from '@/lib/seo'
 
 export const metadata: Metadata = {
   title: {
-    absolute: `Offres ${SITE_NAME} — Études de réseau, formation dispatchers, OTS, codes de réseau ENTSO-E, CGMES`,
+    absolute: `Offres — ${SITE_NAME} | Études de réseau, exploitation, codes ENTSO-E, formation OTS`,
   },
   description:
-    "8 offres d'expertise en exploitation des réseaux électriques : formation des opérateurs, études de réseau, audit d'exploitation, simulateurs OTS, codes de réseau, automatisation CGMES, due diligence internationale.",
+    "Quatre domaines d'expertise en exploitation des réseaux électriques : études & analyses de réseau, exploitation & audit, codes de réseau ENTSO-E, formation & simulateurs OTS. Appui investisseurs & bailleurs.",
   alternates: { canonical: canonical('/offres') },
   openGraph: {
-    title: `Offres ${SITE_NAME} — Études de réseau, formation, OTS, CGMES`,
+    title: `Offres — ${SITE_NAME} | Expertise exploitation réseaux électriques`,
     description:
-      "8 offres d'expertise en exploitation des réseaux électriques : formation dispatchers, études de réseau, simulateurs OTS, codes de réseau ENTSO-E, automatisation CGMES.",
+      "Quatre domaines d'expertise en exploitation des réseaux électriques : études & analyses de réseau, exploitation & audit, codes de réseau ENTSO-E, formation & simulateurs OTS.",
     url: canonical('/offres'),
     images: [{ url: DEFAULT_OG_IMAGE, alt: SITE_NAME }],
   },

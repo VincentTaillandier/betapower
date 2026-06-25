@@ -5,7 +5,6 @@ import { Offre, VersionDetaillee } from '@/lib/offres'
 
 interface OffreDetailClientProps {
   offre: Offre
-  pillarName: string
   relatedProjects?: { slug: string; title: string }[]
 }
 
@@ -16,37 +15,13 @@ interface SectionConfig {
 }
 
 const sectionsConfig: SectionConfig[] = [
-  { key: 'contexte', type: 'paragraphe' },
-  { key: 'objectif', titre: 'Objectif', type: 'paragraphe' },
-  { key: 'ceQueNousFaisons', titre: 'Ce que nous faisons', type: 'liste' },
-  { key: 'expertiseApportee', titre: 'Expertise apportée', type: 'liste' },
-  { key: 'domainesCouverts', titre: 'Domaines couverts', type: 'paragraphe' },
-  { key: 'secteursConcernes', titre: 'Secteurs concernés', type: 'paragraphe' },
-  { key: 'formats', titre: 'Formats', type: 'liste' },
-  { key: 'themes', titre: 'Thèmes', type: 'liste' },
-  { key: 'publicsCibles', titre: 'Publics cibles', type: 'paragraphe' },
-  { key: 'derouleType', titre: 'Déroulé type', type: 'liste' },
-  { key: 'livrablesTypes', titre: 'Livrables types', type: 'liste' },
-  { key: 'plusValueClient', titre: 'Plus-value client', type: 'paragraphe' },
-  { key: 'beneficesClient', titre: 'Bénéfices client', type: 'liste' },
-  { key: 'resultatsAttendus', titre: 'Résultats attendus', type: 'liste' },
-  { key: 'casDusage', titre: "Cas d'usage", type: 'liste' },
-  { key: 'exempleMissions', titre: 'Exemples de missions', type: 'liste' },
-  { key: 'references', titre: 'Références', type: 'liste' },
+  { key: 'enBref', titre: 'En bref', type: 'paragraphe' },
+  { key: 'ceQueCouvreOffre', titre: "Ce que couvre l'offre", type: 'liste' },
+  { key: 'livrablesTypes', titre: 'Livrables types', type: 'paragraphe' },
+  { key: 'exemplesMissions', titre: 'Exemples de missions', type: 'liste' },
 ]
 
-function renderListItem(item: string, idx: number) {
-  const parts = item.split('**')
-  return (
-    <li key={idx} className="text-gray-700 leading-relaxed">
-      {parts.map((part, i) =>
-        i % 2 === 1 ? <strong key={i}>{part}</strong> : part
-      )}
-    </li>
-  )
-}
-
-export default function OffreDetailClient({ offre, pillarName, relatedProjects }: OffreDetailClientProps) {
+export default function OffreDetailClient({ offre, relatedProjects }: OffreDetailClientProps) {
   const detail = offre.versionDetaillee
 
   return (
@@ -54,7 +29,7 @@ export default function OffreDetailClient({ offre, pillarName, relatedProjects }
       {/* Breadcrumb */}
       <div className="animate-fade-in-up mb-8">
         <Link
-          href="/offres"
+          href="/offres/"
           className="text-sm text-betapower-azure hover:underline"
         >
           ← Retour aux offres
@@ -65,12 +40,17 @@ export default function OffreDetailClient({ offre, pillarName, relatedProjects }
       <div className="animate-fade-in-up mb-12" style={{ animationDelay: '100ms' }}>
         <div className="mb-3">
           <span className="text-sm font-medium text-betapower-azure uppercase tracking-wide">
-            {pillarName}
+            {offre.eyebrow}
           </span>
         </div>
         <h1 className="text-4xl font-bold text-gray-900 mb-4">
           {detail.titre}
         </h1>
+        {detail.audienceNote && (
+          <p className="text-base text-gray-500 italic mb-4">
+            {detail.audienceNote}
+          </p>
+        )}
         <p className="text-xl text-gray-600 leading-relaxed">
           {detail.sousTitre}
         </p>
@@ -96,7 +76,9 @@ export default function OffreDetailClient({ offre, pillarName, relatedProjects }
               ) : (
                 Array.isArray(value) ? (
                   <ul className="space-y-3">
-                    {value.map((item, idx) => renderListItem(item, idx))}
+                    {(value as string[]).map((item, idx) => (
+                      <li key={idx} className="text-gray-700 leading-relaxed">{item}</li>
+                    ))}
                   </ul>
                 ) : (
                   <p className="text-gray-700 leading-relaxed">
@@ -117,7 +99,7 @@ export default function OffreDetailClient({ offre, pillarName, relatedProjects }
             {relatedProjects.map(p => (
               <li key={p.slug}>
                 <Link
-                  href={`/projets/${p.slug}`}
+                  href={`/projets/${p.slug}/`}
                   className="text-betapower-azure hover:text-betapower-gold transition-colors font-medium"
                 >
                   {p.title} →
@@ -136,7 +118,7 @@ export default function OffreDetailClient({ offre, pillarName, relatedProjects }
         <p className="text-white/80 mb-6 max-w-2xl mx-auto">
           Discutons de votre projet lors d'un premier échange de 30 minutes, sans engagement.
         </p>
-        <Link href="/contact" className="btn-primary inline-block">
+        <Link href="/contact/" className="btn-primary inline-block">
           Prendre contact
         </Link>
       </div>
